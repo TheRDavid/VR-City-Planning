@@ -13,7 +13,7 @@ public class Main : MonoBehaviour
         List<Building> buildings = new List<Building>(
             new Building[]{
             new Building(5,3, new Vector2Int(2,3),Vector3Int.one),
-            new Building(2,4,  new Vector2Int(-2,3),new Vector3Int(1,2,3))
+            new Building(2,4,  new Vector2Int(-2,3),Vector3Int.one)
         });
         Municipality m = new Municipality(buildings, 0, Vector2Int.zero);
 
