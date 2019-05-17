@@ -12,12 +12,12 @@ public class Street
     public Vector2Int Start
     {
         get { return start; }
-        set { start = value; }
+        set { start = value; calculateLength(); }
     }
     public Vector2Int End
     {
         get { return end; }
-        set { end = value; }
+        set { end = value; calculateLength(); }
     }
     public float Length { get; set; }
 
