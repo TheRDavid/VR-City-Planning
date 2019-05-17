@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class Street
+public class Road
 {
     private Vector2Int start;
     private Vector2Int end;
@@ -21,7 +21,7 @@ public class Street
     }
     public float Length { get; set; }
 
-    public Street(Vector2Int start, Vector2Int end)
+    public Road(Vector2Int start, Vector2Int end)
     {
         this.Start = start;
         this.End = end;
