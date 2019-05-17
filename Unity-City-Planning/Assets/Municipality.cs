@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Municipality : MonoBehaviour
+public class Municipality
 {
 
     private int streetSpace;
@@ -72,16 +72,5 @@ public class Municipality : MonoBehaviour
     private void updateGreenSpace()
     {
         greenSpace = size.x * size.y - streetSpace - buildingSpace;
-    }
-
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

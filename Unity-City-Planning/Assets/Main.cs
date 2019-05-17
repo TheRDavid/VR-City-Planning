@@ -7,16 +7,25 @@ using System;
 public class Main : MonoBehaviour
 {
     // Start is called before the first frame update
+    public GameObject prefab;
     void Start()
     {
         List<Building> buildings = new List<Building>(
             new Building[]{
-            new Building(5,3, Vector3Int.one),
-            new Building(2,4, new Vector3Int(1,2,3))
+            new Building(5,3, new Vector2Int(2,3),Vector3Int.one),
+            new Building(2,4,  new Vector2Int(-2,3),new Vector3Int(1,2,3))
         });
         Municipality m = new Municipality(buildings, 0, Vector2Int.zero);
-        Debug.Log("City population: " + m.StreetSpace + ", size: " + m.Size + ", green space: " + m.GreenSpace);
 
+        foreach (Building b in buildings)
+        {
+            Instantiate(prefab, locationToUnityLocation(b.Location), Quaternion.identity);
+        }
+    }
+
+    public Vector3Int locationToUnityLocation(Vector2Int location)
+    {
+        return new Vector3Int(location.x, 0, location.y);
     }
 
     // Update is called once per frame
