@@ -1,14 +1,15 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using UnityEngine;
 
-[System.Serializable]
+[Serializable]
 public class Building
 {
-    private int population;
-    private int consumption;
-    private Vector3Int size;
-    private Vector2Int location;
+    public int population, consumption;
+    public Vector3Int size;
+    public Vector2Int location;
 
     public int Consumption {
         get { return consumption; }

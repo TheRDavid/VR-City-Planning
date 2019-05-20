@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using UnityEngine;
 
-[System.Serializable]
+[Serializable]
 public class Road
 {
-    private Vector2Int start;
-    private Vector2Int end;
+    public Vector2Int start, end;
 
     public Vector2Int Start
     {
