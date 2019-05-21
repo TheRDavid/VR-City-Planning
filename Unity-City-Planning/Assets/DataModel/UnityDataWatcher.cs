@@ -42,6 +42,23 @@ public class UnityDataWatcher : MonoBehaviour, IDataWatcher
                 Debug.Log("adding building");
                 GameObject go = Instantiate(buildingPrefab, locationToUnityLocation(b.Location), Quaternion.identity);
                 dataObjects.Add(go);
+
+                if (b.Consumption > 3)
+                {
+                foreach (Renderer r in go.GetComponentsInChildren<Renderer>())
+                    {
+                        r.material.color = Color.red;
+                    }
+                } else
+                {
+                    foreach (Renderer r in go.GetComponentsInChildren<Renderer>())
+                    {
+                        r.material.color = Color.white;
+
+                    }
+                }
+
+
             }
 
             foreach (Road r in municipality.roads)
