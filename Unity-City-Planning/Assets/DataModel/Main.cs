@@ -15,7 +15,6 @@ public class Main : MonoBehaviour
 
         if (!File.Exists(dataPath+dataFileName))
         {
-            Debug.Log("create new file");
             List<Building> buildings = new List<Building>(
                 new Building[]{
                 new Building(5,3, new Vector2Int(2,3),Vector3Int.one),
@@ -36,8 +35,6 @@ public class Main : MonoBehaviour
                 true));
             writer.Close();
         }
-
-        Debug.Log("read from file");
 
         GameObject mainObject = GameObject.Find("mainObject");
 

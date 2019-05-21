@@ -30,7 +30,6 @@ public class UnityDataWatcher : MonoBehaviour, IDataWatcher
     {
         if(refreshNeeded)
         {
-            Debug.Log("refresh detected");
             foreach (GameObject gameObject in dataObjects)
             {
                 Destroy(gameObject);
@@ -39,13 +38,12 @@ public class UnityDataWatcher : MonoBehaviour, IDataWatcher
 
             foreach (Building b in municipality.buildings)
             {
-                Debug.Log("adding building");
                 GameObject go = Instantiate(buildingPrefab, locationToUnityLocation(b.Location), Quaternion.identity);
                 dataObjects.Add(go);
 
                 if (b.Consumption > 3)
                 {
-                foreach (Renderer r in go.GetComponentsInChildren<Renderer>())
+                    foreach (Renderer r in go.GetComponentsInChildren<Renderer>())
                     {
                         r.material.color = Color.red;
                     }

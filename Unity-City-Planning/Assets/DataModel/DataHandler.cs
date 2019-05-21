@@ -24,7 +24,6 @@ public class DataHandler
 
     private void OnFileChanged(object sender, FileSystemEventArgs e)
     {
-        Debug.Log($"Change type: {e.ChangeType}");
         if (e.ChangeType.Equals(WatcherChangeTypes.Changed))
         {
             refresh();
@@ -33,7 +32,6 @@ public class DataHandler
 
     private void refresh()
     {
-        Debug.Log("refresh");
         FileStream dataStream = File.Open(dataFileWatcher.Path+dataFileName, FileMode.Open);
         StreamReader reader = new StreamReader(dataStream);
         municipality = JsonUtility.FromJson<Municipality>(reader.ReadToEnd());
