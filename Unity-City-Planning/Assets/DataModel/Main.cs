@@ -6,45 +6,40 @@ using System;
 
 public class Main : MonoBehaviour
 {
-    // Start is called before the first frame update
-    public GameObject building;
-    public GameObject road;
 
     void Start()
     {
-        building = Resources.Load("Prefabs/Building") as GameObject;
-        road = Resources.Load("Prefabs/Road") as GameObject;
 
-        List<Building> buildings = new List<Building>(
-            new Building[]{
-            new Building(5,3, new Vector2Int(2,3),Vector3Int.one),
-            new Building(2,4,  new Vector2Int(1,3),Vector3Int.one),
-            new Building(2,4,  new Vector2Int(0,3),Vector3Int.one)
-        });
+        string dataPath = "CityData/";
+        string dataFileName = "city1.json";
 
-        Municipality m = new Municipality(buildings, 0, Vector2Int.zero);
-
-        foreach (Building b in buildings)
+        if (!File.Exists(dataPath+dataFileName))
         {
-            Instantiate(building, locationToUnityLocation(b.Location), Quaternion.identity);
-        }
+            List<Building> buildings = new List<Building>(
+                new Building[]{
+                new Building(5,3, new Vector2Int(2,3),Vector3Int.one),
+                new Building(2,4,  new Vector2Int(1,3),Vector3Int.one),
+                new Building(2,4,  new Vector2Int(0,3),Vector3Int.one)
+            });
 
-        List<Road> roads = new List<Road>(
-            new Road[]{
+
+            List<Road> roads = new List<Road>(
+                new Road[]{
             new Road(new Vector2Int(2,1),new Vector2Int(0,1)),
             new Road(new Vector2Int(2,4),new Vector2Int(0,4))
-        });
-
-        foreach (Road r in roads)
-        {
-            GameObject thisRoad = Instantiate(road, locationToUnityLocation(r.Start), Quaternion.identity);
-            //thisRoad.transform.localScale = new Vector3(0.1F, 0, 0);
+            });
+            
+            StreamWriter writer = new StreamWriter(dataPath+dataFileName, false);
+            writer.WriteLine(JsonUtility.ToJson(
+                new Municipality(buildings, roads, 0, Vector2Int.zero), 
+                true));
+            writer.Close();
         }
-    }
 
-    public Vector3Int locationToUnityLocation(Vector2Int location)
-    {
-        return new Vector3Int(location.x, 0, location.y);
+        GameObject mainObject = GameObject.Find("mainObject");
+
+        mainObject.AddComponent<UnityDataWatcher>();
+        DataHandler dataHandler = new DataHandler(dataPath, dataFileName, mainObject.GetComponent<UnityDataWatcher>());
     }
 
     // Update is called once per frame

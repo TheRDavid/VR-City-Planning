@@ -1,14 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Runtime.Serialization;
+using System;
 
+[Serializable]
 public class Municipality
 {
-
-    private int streetSpace;
-    private int buildingSpace;
-    private int greenSpace;
-    private Vector2Int size;
+    public int streetSpace, buildingSpace, greenSpace;
+    public Vector2Int size;
+    public List<Building> buildings;
+    public List<Road> roads;
 
     // We will need to change from an int as street space to actual streets (two coordinates that are connected)
     public int StreetSpace
@@ -34,11 +36,11 @@ public class Municipality
         get { return size; }
         set { updateGreenSpace(); }
     }
-    private List<Building> buildings;
 
-    public Municipality(List<Building> buildings, int streetSpace, Vector2Int size)
+    public Municipality(List<Building> buildings, List<Road> roads, int streetSpace, Vector2Int size)
     {
         this.buildings = buildings;
+        this.roads = roads;
         this.StreetSpace = streetSpace;
         this.Size = size;
         updateStreetSpace();
