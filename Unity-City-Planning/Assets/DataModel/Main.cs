@@ -6,18 +6,12 @@ using System;
 
 public class Main : MonoBehaviour
 {
-    // Start is called before the first frame update
-    public GameObject buildingPrefab;
-    public GameObject roadPrefab;
 
     void Start()
     {
-        buildingPrefab = Resources.Load("Prefabs/Building") as GameObject;
-        roadPrefab = Resources.Load("Prefabs/Road") as GameObject;
 
-        string dataPath = "CityData/city1.json";
-
-        Municipality m;
+        string dataPath = "CityData/";
+        string dataFileName = "city1.json";
 
         if (!File.Exists(dataPath))
         {
@@ -35,35 +29,20 @@ public class Main : MonoBehaviour
             new Road(new Vector2Int(2,1),new Vector2Int(0,1)),
             new Road(new Vector2Int(2,4),new Vector2Int(0,4))
             });
-
-            m = new Municipality(buildings, roads, 0, Vector2Int.zero);
             
-            StreamWriter writer = new StreamWriter(dataPath, false);
-            writer.WriteLine(JsonUtility.ToJson(m, true));
+            StreamWriter writer = new StreamWriter(dataPath+dataFileName, false);
+            writer.WriteLine(JsonUtility.ToJson(
+                new Municipality(buildings, roads, 0, Vector2Int.zero), 
+                true));
             writer.Close();
-        } else
-        {
-            Debug.Log("read from file");
-            FileStream dataFile = File.Open(dataPath, FileMode.Open);
-            StreamReader reader = new StreamReader(dataFile);
-            m = JsonUtility.FromJson<Municipality>(reader.ReadToEnd());
         }
 
-        foreach (Building b in m.buildings)
-        {
-            Instantiate(buildingPrefab, locationToUnityLocation(b.Location), Quaternion.identity);
-        }
+        Debug.Log("read from file");
 
-        foreach (Road r in m.roads)
-        {
-            GameObject thisRoad = Instantiate(roadPrefab, locationToUnityLocation(r.Start), Quaternion.identity);
-            //thisRoad.transform.localScale = new Vector3(0.1F, 0, 0);
-        }
-    }
+        GameObject mainObject = GameObject.Find("mainObject");
 
-    public Vector3Int locationToUnityLocation(Vector2Int location)
-    {
-        return new Vector3Int(location.x, 0, location.y);
+        mainObject.AddComponent<UnityDataWatcher>();
+        DataHandler dataHandler = new DataHandler(dataPath, dataFileName, mainObject.GetComponent<UnityDataWatcher>());
     }
 
     // Update is called once per frame
