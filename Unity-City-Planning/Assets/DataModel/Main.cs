@@ -13,7 +13,7 @@ public class Main : MonoBehaviour
         string dataPath = "CityData/";
         string dataFileName = "city1.json";
 
-        if (!File.Exists(dataPath))
+        if (!File.Exists(dataPath+dataFileName))
         {
             Debug.Log("create new file");
             List<Building> buildings = new List<Building>(
