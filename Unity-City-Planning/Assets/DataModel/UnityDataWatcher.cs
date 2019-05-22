@@ -70,44 +70,49 @@ public class UnityDataWatcher : MonoBehaviour, IDataWatcher
                 switch(orientation)
                 {
                     case 1:
-                        //to North
+                        //to North, 
+                        roadRotation = Quaternion.Euler(0, 0, 0);
+                        roadlength = Mathf.Abs(r.End.y - r.Start.y);
+                        for (int z = 0; z < roadlength; z++)
+                        {
+                            GameObject go = Instantiate(roadPrefab, (startLocation + new Vector3Int(0, 0, z)), roadRotation);
+                            dataObjects.Add(go);
+                        }
                         break;
                     case 2:
                         //to East
+                        roadRotation = Quaternion.Euler(0, 90, 0);
+                        roadlength = Mathf.Abs(r.End.x - r.Start.x);
+                        for (int x = 0; x < roadlength; x++)
+                        {
+                            GameObject go = Instantiate(roadPrefab, (startLocation + new Vector3Int(x, 0, 0)), roadRotation);
+                            dataObjects.Add(go);
+                        }
                         break;
                     case 3:
                         //to South
+                        roadRotation = Quaternion.Euler(0, 0, 0);
+                        roadlength = Mathf.Abs(r.End.y - r.Start.y);
+
+                        for (int z = 0; z < roadlength; z++)
+                        {
+                            GameObject go = Instantiate(roadPrefab, (startLocation - new Vector3Int(0, 0, z)), roadRotation);
+                            dataObjects.Add(go);
+                        }
                         break;
                     case 4:
                         //to West
+                        roadRotation = Quaternion.Euler(0, 90, 0);
+                        roadlength = Mathf.Abs(r.End.x - r.Start.x);
+                        for (int x = 0; x < roadlength; x++)
+                        {
+                            GameObject go = Instantiate(roadPrefab, (startLocation - new Vector3Int(x, 0, 0)), roadRotation);
+                            dataObjects.Add(go);
+                        }
                         break;
-                }
-
-
-
-                if (r.Start.x == r.End.x)
-                {
-                    roadlength = Mathf.Abs(r.End.y - r.Start.y);
-                    for (int z = 0; z < roadlength; z++)
-                    {
-                        GameObject go = Instantiate(roadPrefab, (startLocation + new Vector3Int(0, 0, z)), roadRotation);
-                        dataObjects.Add(go);
-                    }
-                }
-                else if (r.Start.y == r.End.y)
-                {
-                    
-                    roadRotation = Quaternion.Euler(0, 90, 0);
-                    roadlength = Mathf.Abs(r.End.x - r.Start.x);
-                    for (int x = 0; x < roadlength; x++)
-                    {
-                        GameObject go = Instantiate(roadPrefab, (startLocation + new Vector3Int(x, 0, 0)), roadRotation);
-                        dataObjects.Add(go);
-                    }
-                }
-                else
-                {
-                    Debug.Log("ERROR");
+                    default:
+                        Debug.Log("ERROR");
+                        break;
                 }
             }
 
@@ -128,16 +133,15 @@ public class UnityDataWatcher : MonoBehaviour, IDataWatcher
             {
                 return 3;
             }
-            else return 1;
+            else return 1; //North
         }
-        else if (r.Start.y == r.End.y) // East or West
+        else if (r.Start.y == r.End.y) //East or West
         {
-            roadRotation = Quaternion.Euler(0, 90, 0);
-            if (r.Start.x > r.End.x) // West
+            if (r.Start.x > r.End.x) //West
             {
                 return 4;
             }
-            else return 2;
+            else return 2; //East
         }
         else return 0;
     }
