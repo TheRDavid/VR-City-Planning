@@ -9,7 +9,7 @@
     "buildings": [
         {
             "population": 3,
-            "consumption": 5,
+            "consumption": 0,
             "size": {
                 "x": 1,
                 "y": 1,
@@ -35,7 +35,7 @@
         },
         {
             "population": 3,
-            "consumption": 0,
+            "consumption": 8,
             "size": {
                 "x": 1,
                 "y": 1,
@@ -100,7 +100,7 @@
         },
         {
             "population": 3,
-            "consumption": 0,
+            "consumption": 8,
             "size": {
                 "x": 1,
                 "y": 1,
@@ -126,7 +126,7 @@
         },
         {
             "population": 4,
-            "consumption": 2,
+            "consumption": 8,
             "size": {
                 "x": 1,
                 "y": 1,
@@ -141,7 +141,7 @@
     "roads": [
         {
             "start": {
-                "x": 2,
+                "x": 8,
                 "y": 1
             },
             "end": {
@@ -151,7 +151,7 @@
         },
         {
             "start": {
-                "x": 2,
+                "x": 10,
                 "y": 4
             },
             "end": {

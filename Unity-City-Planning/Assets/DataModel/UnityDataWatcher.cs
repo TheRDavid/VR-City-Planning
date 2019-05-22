@@ -63,7 +63,28 @@ public class UnityDataWatcher : MonoBehaviour, IDataWatcher
             {
                 Quaternion roadRotation = Quaternion.Euler(0, 0, 0);
                 Vector3Int startLocation = locationToUnityLocation(r.Start);
+                int orientation = 0; //1 = north, 2 = east, 3 = south, 4 = west
+                orientation = getOrientation(r);
                 int roadlength = 0;
+
+                switch(orientation)
+                {
+                    case 1:
+                        //to North
+                        break;
+                    case 2:
+                        //to East
+                        break;
+                    case 3:
+                        //to South
+                        break;
+                    case 4:
+                        //to West
+                        break;
+                }
+
+
+
                 if (r.Start.x == r.End.x)
                 {
                     roadlength = Mathf.Abs(r.End.y - r.Start.y);
@@ -97,5 +118,27 @@ public class UnityDataWatcher : MonoBehaviour, IDataWatcher
     public Vector3Int locationToUnityLocation(Vector2Int location)
     {
         return new Vector3Int(location.x, 0, location.y);
+    }
+
+    private int getOrientation(Road r) //1 = north, 2 = east, 3 = south, 4 = west
+    {
+        if (r.Start.x == r.End.x) //North or South
+        {
+            if (r.Start.y > r.End.y) //South
+            {
+                return 3;
+            }
+            else return 1;
+        }
+        else if (r.Start.y == r.End.y) // East or West
+        {
+            roadRotation = Quaternion.Euler(0, 90, 0);
+            if (r.Start.x > r.End.x) // West
+            {
+                return 4;
+            }
+            else return 2;
+        }
+        else return 0;
     }
 }
