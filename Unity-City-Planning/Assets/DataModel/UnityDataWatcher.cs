@@ -61,9 +61,33 @@ public class UnityDataWatcher : MonoBehaviour, IDataWatcher
 
             foreach (Road r in municipality.roads)
             {
-                GameObject go = Instantiate(roadPrefab, locationToUnityLocation(r.Start), Quaternion.identity);
-                //thisRoad.transform.localScale = new Vector3(0.1F, 0, 0);
-                dataObjects.Add(go);
+                Quaternion roadRotation = Quaternion.Euler(0, 0, 0);
+                Vector3Int startLocation = locationToUnityLocation(r.Start);
+                int roadlength = 0;
+                if (r.Start.x == r.End.x)
+                {
+                    roadlength = Mathf.Abs(r.End.y - r.Start.y);
+                    for (int z = 0; z < roadlength; z++)
+                    {
+                        GameObject go = Instantiate(roadPrefab, (startLocation + new Vector3Int(0, 0, z)), roadRotation);
+                        dataObjects.Add(go);
+                    }
+                }
+                else if (r.Start.y == r.End.y)
+                {
+                    
+                    roadRotation = Quaternion.Euler(0, 90, 0);
+                    roadlength = Mathf.Abs(r.End.x - r.Start.x);
+                    for (int x = 0; x < roadlength; x++)
+                    {
+                        GameObject go = Instantiate(roadPrefab, (startLocation + new Vector3Int(x, 0, 0)), roadRotation);
+                        dataObjects.Add(go);
+                    }
+                }
+                else
+                {
+                    Debug.Log("ERROR");
+                }
             }
 
             refreshNeeded = false;
