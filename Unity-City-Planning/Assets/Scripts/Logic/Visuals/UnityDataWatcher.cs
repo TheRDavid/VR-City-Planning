@@ -6,14 +6,16 @@ public class UnityDataWatcher : MonoBehaviour, IDataWatcher
 {
 
     private bool refreshNeeded = false;
+    private string jsonRules;
     private Municipality municipality;
     private List<GameObject> dataObjects = new List<GameObject>();
 
     public GameObject buildingPrefab;
     public GameObject roadPrefab;
 
-    public void reactToChange(Municipality municipality)
+    public void reactToChange(Municipality municipality, string jsonRules)
     {
+        this.jsonRules = jsonRules;
         this.municipality = municipality;
         refreshNeeded = true;
     }
@@ -40,21 +42,7 @@ public class UnityDataWatcher : MonoBehaviour, IDataWatcher
             {
                 GameObject go = Instantiate(buildingPrefab, locationToUnityLocation(b.Location), Quaternion.identity);
                 dataObjects.Add(go);
-
-                if (b.Consumption > 3)
-                {
-                    foreach (Renderer r in go.GetComponentsInChildren<Renderer>())
-                    {
-                        r.material.color = Color.red;
-                    }
-                } else
-                {
-                    foreach (Renderer r in go.GetComponentsInChildren<Renderer>())
-                    {
-                        r.material.color = Color.white;
-
-                    }
-                }
+                
 
 
             }

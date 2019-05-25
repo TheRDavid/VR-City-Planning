@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using System;
+using System.Runtime.InteropServices;
 
 public class Main : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class Main : MonoBehaviour
 
         string dataPath = "CityData/";
         string dataFileName = "city1.json";
+        string ruleFileName = "city1.rules.json";
 
         if (!File.Exists(dataPath+dataFileName))
         {
@@ -39,7 +41,7 @@ public class Main : MonoBehaviour
         GameObject mainObject = GameObject.Find("mainObject");
 
         mainObject.AddComponent<UnityDataWatcher>();
-        DataHandler dataHandler = new DataHandler(dataPath, dataFileName, mainObject.GetComponent<UnityDataWatcher>());
+        DataHandler dataHandler = new DataHandler(dataPath, dataFileName, ruleFileName, mainObject.GetComponent<UnityDataWatcher>());
     }
 
     // Update is called once per frame

@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface IDataWatcher
 {
-    void reactToChange(Municipality municipality);
+    void reactToChange(Municipality municipality, string jsonRules);
 }

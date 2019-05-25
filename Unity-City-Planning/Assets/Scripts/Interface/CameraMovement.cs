@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class cameraMovement : MonoBehaviour
+public class CameraMovement : MonoBehaviour
 {
 
     /*
-    Writen by Windexglow 11-13-10.  Use it, edit it, steal it I don't care.  
+    Writen by Windexglow 11-13-10.  Use it, edit it, steal it I don't care. 
     Converted to C# 27-02-13 - no credit wanted.
     Simple flycam I made, since I couldn't find any others made public.  
     Made simple to use (drag and drop, done) for regular keyboard layout  

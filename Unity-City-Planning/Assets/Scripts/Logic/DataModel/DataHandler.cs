@@ -10,12 +10,13 @@ public class DataHandler
     private IDataWatcher dataWatcher;
     private FileSystemWatcher dataFileWatcher;
     private Municipality municipality;
-    private string dataFileName;
+    private string dataFileName, ruleFileName;
 
-    public DataHandler(string dataFilePath, string dataFileName, IDataWatcher dataWatcher)
+    public DataHandler(string dataFilePath, string dataFileName, string ruleFileName, IDataWatcher dataWatcher)
     {
         this.dataWatcher = dataWatcher;
         this.dataFileName = dataFileName;
+        this.ruleFileName = ruleFileName;
         dataFileWatcher = new FileSystemWatcher(dataFilePath);
         dataFileWatcher.Changed += OnFileChanged;
         dataFileWatcher.EnableRaisingEvents = true;
@@ -32,12 +33,21 @@ public class DataHandler
 
     private void refresh()
     {
-        FileStream dataStream = File.Open(dataFileWatcher.Path+dataFileName, FileMode.Open);
-        StreamReader reader = new StreamReader(dataStream);
-        municipality = JsonUtility.FromJson<Municipality>(reader.ReadToEnd());
-        dataStream.Close();
+        FileStream dataStream = File.Open(dataFileWatcher.Path + dataFileName, FileMode.Open);
+        StreamReader dataReader = new StreamReader(dataStream);
 
-        dataWatcher.reactToChange(municipality);
+        FileStream ruleStream = File.Open(dataFileWatcher.Path + ruleFileName, FileMode.Open);
+        StreamReader ruleReader = new StreamReader(ruleStream);
+
+        string jsonData = dataReader.ReadToEnd();
+        string jsonRules = ruleReader.ReadToEnd();
+
+        municipality = JsonUtility.FromJson<Municipality>(jsonData);
+
+        dataStream.Close();
+        ruleStream.Close();
+
+        dataWatcher.reactToChange(municipality, jsonRules);
     }
 
 }

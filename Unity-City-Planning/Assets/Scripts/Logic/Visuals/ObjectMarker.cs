@@ -2,10 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class buildingColor : MonoBehaviour
+public abstract class ObjectMarker : MonoBehaviour
 {
 
+    public GameObject gameObject;
 
+    public ObjectMarker(GameObject gameObject)
+    {
+        this.gameObject = gameObject;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -16,9 +21,6 @@ public class buildingColor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        foreach (Renderer r in GetComponentsInChildren<Renderer>())
-        {
-            r.material.color = Color.red;
-        }
+        
     }
 }
