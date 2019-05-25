@@ -128,7 +128,7 @@ public class UnityDataWatcher : MonoBehaviour, IDataWatcher
                         dataObjects.Add(westRoad);
                         break;
                     default:
-                        Debug.Log("ERROR");
+                        Debug.Log("ERROR, road start- and endpoints must either shape a horizontal or vertical line");
                         break;
                 }
             }
