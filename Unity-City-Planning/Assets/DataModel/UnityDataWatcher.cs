@@ -63,21 +63,28 @@ public class UnityDataWatcher : MonoBehaviour, IDataWatcher
             {
                 Quaternion roadRotation = Quaternion.Euler(0, 0, 0);
                 Vector3Int startLocation = locationToUnityLocation(r.Start);
+                Vector3 midpointLocation = new Vector3(0,0,0);
                 int orientation = 0; //1 = north, 2 = east, 3 = south, 4 = west
                 orientation = getOrientation(r);
-                int roadlength = 0;
+                float roadlength = 0;
+                float midpoint = 0;
 
-                switch(orientation)
+                switch (orientation)
                 {
                     case 1:
-                        //to North, 
+                        //to North
+
+                        // get road orientation, length and midpoint
+                        // scaling is done from the middle of objects so the scaled road must be instatiated at it's midpoint
                         roadRotation = Quaternion.Euler(0, 0, 0);
                         roadlength = Mathf.Abs(r.End.y - r.Start.y);
-                        for (int z = 0; z < roadlength; z++)
-                        {
-                            GameObject go = Instantiate(roadPrefab, (startLocation + new Vector3Int(0, 0, z)), roadRotation);
-                            dataObjects.Add(go);
-                        }
+                        midpoint = r.Start.y + (roadlength / 2f);
+                        midpointLocation = new Vector3(r.Start.x,0,midpoint);
+
+                        // make a road, scale it, then add it to dataObjects
+                        GameObject northRoad = Instantiate(roadPrefab, midpointLocation, roadRotation);
+                        northRoad.transform.localScale += new Vector3(0, 0, roadlength);
+                        dataObjects.Add(northRoad);
                         break;
                     case 2:
                         //to East
@@ -93,12 +100,12 @@ public class UnityDataWatcher : MonoBehaviour, IDataWatcher
                         //to South
                         roadRotation = Quaternion.Euler(0, 0, 0);
                         roadlength = Mathf.Abs(r.End.y - r.Start.y);
-
-                        for (int z = 0; z < roadlength; z++)
-                        {
-                            GameObject go = Instantiate(roadPrefab, (startLocation - new Vector3Int(0, 0, z)), roadRotation);
-                            dataObjects.Add(go);
-                        }
+                        midpoint = r.Start.y - (roadlength / 2f);
+                        midpointLocation = new Vector3(r.Start.x, 0, midpoint);
+                        
+                        GameObject southRoad = Instantiate(roadPrefab, midpointLocation, roadRotation);
+                        southRoad.transform.localScale += new Vector3(0, 0, roadlength);
+                        dataObjects.Add(southRoad);
                         break;
                     case 4:
                         //to West
