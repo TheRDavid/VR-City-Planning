@@ -80,11 +80,6 @@ public class UnityDataWatcher : MonoBehaviour, IDataWatcher
                         roadlength = Mathf.Abs(r.End.y - r.Start.y);
                         midpoint = r.Start.y + (roadlength / 2f);
                         midpointLocation = new Vector3(r.Start.x,0,midpoint);
-
-                        // make a road, scale it, then add it to dataObjects
-                        GameObject northRoad = Instantiate(roadPrefab, midpointLocation, roadRotation);
-                        northRoad.transform.localScale += new Vector3(0, 0, roadlength);
-                        dataObjects.Add(northRoad);
                         break;
                     case 2:
                         //to East
@@ -92,10 +87,6 @@ public class UnityDataWatcher : MonoBehaviour, IDataWatcher
                         roadlength = Mathf.Abs(r.End.x - r.Start.x);
                         midpoint = r.Start.x + (roadlength / 2f);
                         midpointLocation = new Vector3(midpoint, 0, r.Start.y);
-
-                        GameObject eastRoad = Instantiate(roadPrefab, midpointLocation, roadRotation);
-                        eastRoad.transform.localScale += new Vector3(0, 0, roadlength);
-                        dataObjects.Add(eastRoad);
                         break;
                     case 3:
                         //to South
@@ -103,10 +94,6 @@ public class UnityDataWatcher : MonoBehaviour, IDataWatcher
                         roadlength = Mathf.Abs(r.End.y - r.Start.y);
                         midpoint = r.Start.y - (roadlength / 2f);
                         midpointLocation = new Vector3(r.Start.x, 0, midpoint);
-                        
-                        GameObject southRoad = Instantiate(roadPrefab, midpointLocation, roadRotation);
-                        southRoad.transform.localScale += new Vector3(0, 0, roadlength);
-                        dataObjects.Add(southRoad);
                         break;
                     case 4:
                         //to West
@@ -114,15 +101,21 @@ public class UnityDataWatcher : MonoBehaviour, IDataWatcher
                         roadlength = Mathf.Abs(r.End.x - r.Start.x);
                         midpoint = r.Start.x - (roadlength / 2f);
                         midpointLocation = new Vector3(midpoint, 0, r.Start.y);
-
-                        GameObject westRoad = Instantiate(roadPrefab, midpointLocation, roadRotation);
-                        westRoad.transform.localScale += new Vector3(0, 0, roadlength);
-                        dataObjects.Add(westRoad);
                         break;
                     default:
                         Debug.Log("ERROR, road start- and endpoints must either shape a horizontal or vertical line");
                         break;
                 }
+
+                // make a road and scale it
+                GameObject road = Instantiate(roadPrefab, midpointLocation, roadRotation);
+                road.transform.localScale += new Vector3(0, 0, roadlength);
+
+                // update texture of road
+                road.GetComponentInChildren<MeshRenderer>().material.mainTextureScale = new Vector2(1, roadlength);
+
+                // add the new road to dataObjects
+                dataObjects.Add(road);
             }
 
             refreshNeeded = false;
