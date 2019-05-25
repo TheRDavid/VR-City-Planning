@@ -90,11 +90,12 @@ public class UnityDataWatcher : MonoBehaviour, IDataWatcher
                         //to East
                         roadRotation = Quaternion.Euler(0, 90, 0);
                         roadlength = Mathf.Abs(r.End.x - r.Start.x);
-                        for (int x = 0; x < roadlength; x++)
-                        {
-                            GameObject go = Instantiate(roadPrefab, (startLocation + new Vector3Int(x, 0, 0)), roadRotation);
-                            dataObjects.Add(go);
-                        }
+                        midpoint = r.Start.x + (roadlength / 2f);
+                        midpointLocation = new Vector3(midpoint, 0, r.Start.y);
+
+                        GameObject eastRoad = Instantiate(roadPrefab, midpointLocation, roadRotation);
+                        eastRoad.transform.localScale += new Vector3(0, 0, roadlength);
+                        dataObjects.Add(eastRoad);
                         break;
                     case 3:
                         //to South
@@ -111,11 +112,12 @@ public class UnityDataWatcher : MonoBehaviour, IDataWatcher
                         //to West
                         roadRotation = Quaternion.Euler(0, 90, 0);
                         roadlength = Mathf.Abs(r.End.x - r.Start.x);
-                        for (int x = 0; x < roadlength; x++)
-                        {
-                            GameObject go = Instantiate(roadPrefab, (startLocation - new Vector3Int(x, 0, 0)), roadRotation);
-                            dataObjects.Add(go);
-                        }
+                        midpoint = r.Start.x - (roadlength / 2f);
+                        midpointLocation = new Vector3(midpoint, 0, r.Start.y);
+
+                        GameObject westRoad = Instantiate(roadPrefab, midpointLocation, roadRotation);
+                        westRoad.transform.localScale += new Vector3(0, 0, roadlength);
+                        dataObjects.Add(westRoad);
                         break;
                     default:
                         Debug.Log("ERROR");
