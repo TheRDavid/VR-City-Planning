@@ -81,9 +81,14 @@ public class UnityDataWatcher : MonoBehaviour, IDataWatcher
                         midpoint = r.Start.y + (roadlength / 2f);
                         midpointLocation = new Vector3(r.Start.x,0,midpoint);
 
-                        // make a road, scale it, then add it to dataObjects
+                        // make a road and scale it
                         GameObject northRoad = Instantiate(roadPrefab, midpointLocation, roadRotation);
                         northRoad.transform.localScale += new Vector3(0, 0, roadlength);
+
+                        // update texture of road
+                        northRoad.GetComponentInChildren<MeshRenderer>().material.mainTextureScale = new Vector2(1, roadlength);
+
+                        // add the new road to dataObjects
                         dataObjects.Add(northRoad);
                         break;
                     case 2:
@@ -95,6 +100,7 @@ public class UnityDataWatcher : MonoBehaviour, IDataWatcher
 
                         GameObject eastRoad = Instantiate(roadPrefab, midpointLocation, roadRotation);
                         eastRoad.transform.localScale += new Vector3(0, 0, roadlength);
+                        eastRoad.GetComponentInChildren<MeshRenderer>().material.mainTextureScale = new Vector2(1, roadlength);
                         dataObjects.Add(eastRoad);
                         break;
                     case 3:
@@ -106,6 +112,7 @@ public class UnityDataWatcher : MonoBehaviour, IDataWatcher
                         
                         GameObject southRoad = Instantiate(roadPrefab, midpointLocation, roadRotation);
                         southRoad.transform.localScale += new Vector3(0, 0, roadlength);
+                        southRoad.GetComponentInChildren<MeshRenderer>().material.mainTextureScale = new Vector2(1, roadlength);
                         dataObjects.Add(southRoad);
                         break;
                     case 4:
@@ -117,6 +124,7 @@ public class UnityDataWatcher : MonoBehaviour, IDataWatcher
 
                         GameObject westRoad = Instantiate(roadPrefab, midpointLocation, roadRotation);
                         westRoad.transform.localScale += new Vector3(0, 0, roadlength);
+                        westRoad.GetComponentInChildren<MeshRenderer>().material.mainTextureScale = new Vector2(1, roadlength);
                         dataObjects.Add(westRoad);
                         break;
                     default:
