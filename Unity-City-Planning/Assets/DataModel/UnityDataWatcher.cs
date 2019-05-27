@@ -43,6 +43,9 @@ public class UnityDataWatcher : MonoBehaviour, IDataWatcher
                 // another building with the same coordinates exists
                 // or the building overlaps with a road
                 if (drawnBuildings.Contains(b.Location) || collisionDetected(b,municipality.roads)){
+                    if(drawnBuildings.Contains(b.Location)){
+                        Debug.Log("ERROR: Building already exists");
+                    }
                     //do nothing and go to next building
                     continue;
                 }
@@ -183,6 +186,7 @@ public class UnityDataWatcher : MonoBehaviour, IDataWatcher
                     break;
             }
             if (collision){
+                Debug.Log("ERROR: Buildings and roads are overlapping");
                 return true;
             }
         }
