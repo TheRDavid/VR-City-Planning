@@ -21,7 +21,7 @@ public class Condition
     [SerializeField]
     public string conditionName;
     [SerializeField]
-    public ConditionType conditionType;
+    public string conditionType;
     [SerializeField]
     public Visualizer visualizer;
     [SerializeField]
@@ -30,7 +30,7 @@ public class Condition
     public Condition(string conditionName, ConditionType conditionType, string conditionValue, Visualizer visualizer)
     {
         this.conditionName = conditionName;
-        this.conditionType = conditionType;
+        this.conditionType = ConditionTypeNames[(int)conditionType];
         this.conditionValue = conditionValue;
         this.visualizer = visualizer;
     }
@@ -38,6 +38,11 @@ public class Condition
     public enum ConditionType
     {
         equals, notEquals, larger, largerEquals, smaller, smallerEquals
+    }
+
+    public static readonly string[] ConditionTypeNames = new string[]
+    {
+        "equals", "notequals", "larger", "largerequals", "smaller", "smallerequals"
     };
 
     public bool isFullfilled(object instance)
@@ -52,43 +57,40 @@ public class Condition
             float fConditionValue, fValue;
             if(float.TryParse(value, out fValue) && float.TryParse(conditionValue, out fConditionValue))
             {
-                switch (conditionType)
-                {
-                    case ConditionType.equals:
-                        return fConditionValue == fValue;
-                    case ConditionType.notEquals:
-                        return fConditionValue != fValue;
-                    case ConditionType.larger:
-                        return fConditionValue < fValue;
-                    case ConditionType.largerEquals:
-                        return fConditionValue <= fValue;
-                    case ConditionType.smaller:
-                        return fConditionValue > fValue;
-                    case ConditionType.smallerEquals:
-                        return fConditionValue >= fValue;
-                    default: Debug.Log("ERROR: Unknown Condition Type: " + conditionType); return false;
-                }
+                // yes, this if-else thing is gross, feel free to impress me with a better way :P
+                if(conditionType.ToLower().Equals(ConditionTypeNames[(int)ConditionType.equals]))
+                    return fConditionValue == fValue;
+                else if (conditionType.ToLower().Equals(ConditionTypeNames[(int)ConditionType.notEquals]))
+                    return fConditionValue != fValue;
+                else if (conditionType.ToLower().Equals(ConditionTypeNames[(int)ConditionType.larger]))
+                    return fConditionValue < fValue;
+                else if (conditionType.ToLower().Equals(ConditionTypeNames[(int)ConditionType.largerEquals]))
+                    return fConditionValue <= fValue;
+                else if (conditionType.ToLower().Equals(ConditionTypeNames[(int)ConditionType.smaller]))
+                    return fConditionValue > fValue;
+                else if (conditionType.ToLower().Equals(ConditionTypeNames[(int)ConditionType.smallerEquals]))
+                    return fConditionValue >= fValue;
+                else
+                    Debug.Log("ERROR: Unknown Condition Type: " + conditionType); return false;
             }
 
-            switch (conditionType)
-            {
-                case ConditionType.equals:
-                    return conditionValue.CompareTo(value) == 0;
-                case ConditionType.notEquals:
-                    return conditionValue.CompareTo(value) != 0;
-                case ConditionType.larger:
-                    return conditionValue.CompareTo(value) < 0;
-                case ConditionType.largerEquals:
-                    return conditionValue.CompareTo(value) <= 0;
-                case ConditionType.smaller:
-                    return conditionValue.CompareTo(value) > 0;
-                case ConditionType.smallerEquals:
-                    return conditionValue.CompareTo(value) >= 0;
-                default: Debug.Log("ERROR: Unknown Condition Type: " + conditionType); return false;
-            }
+            if (conditionType.ToLower().Equals(ConditionTypeNames[(int)ConditionType.equals]))
+                return conditionValue.CompareTo(value) == 0;
+            else if (conditionType.ToLower().Equals(ConditionTypeNames[(int)ConditionType.notEquals]))
+                return conditionValue.CompareTo(value) != 0;
+            else if (conditionType.ToLower().Equals(ConditionTypeNames[(int)ConditionType.larger]))
+                return conditionValue.CompareTo(value) < 0;
+            else if (conditionType.ToLower().Equals(ConditionTypeNames[(int)ConditionType.largerEquals]))
+                return conditionValue.CompareTo(value) <= 0;
+            else if (conditionType.ToLower().Equals(ConditionTypeNames[(int)ConditionType.smaller]))
+                return conditionValue.CompareTo(value) > 0;
+            else if (conditionType.ToLower().Equals(ConditionTypeNames[(int)ConditionType.smallerEquals]))
+                return conditionValue.CompareTo(value) >= 0;
+            else
+                Debug.Log("ERROR: Unknown Condition Type: " + conditionType); return false;
         }
-
         return false;
     }
+    
    
 }

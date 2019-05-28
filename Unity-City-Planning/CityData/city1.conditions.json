@@ -2,7 +2,7 @@
     "conditions": [
         {
             "conditionName": "Length",
-            "conditionType": 2,
+            "conditionType": "larger",
             "visualizer": {
                 "floatParams": [
                     0.0,
@@ -18,7 +18,7 @@
         },
         {
             "conditionName": "Consumption",
-            "conditionType": 3,
+            "conditionType": "largerequals",
             "visualizer": {
                 "floatParams": [
                     1.0,
@@ -34,7 +34,7 @@
         },
         {
             "conditionName": "Population",
-            "conditionType": 0,
+            "conditionType": "equals",
             "visualizer": {
                 "floatParams": [
                     1.0,
