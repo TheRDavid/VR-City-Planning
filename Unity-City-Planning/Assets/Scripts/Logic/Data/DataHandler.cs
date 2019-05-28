@@ -10,14 +10,15 @@ public class DataHandler
     private IDataWatcher dataWatcher;
     private FileSystemWatcher dataFileWatcher;
     private Municipality municipality;
-    private string dataFileName, ruleFileName;
+    private ConditionList conditionList;
+    private string cityDataDir, dataFileName;
 
-    public DataHandler(string dataFilePath, string dataFileName, string ruleFileName, IDataWatcher dataWatcher)
+    public DataHandler(string cityDataDir, string dataFileName, IDataWatcher dataWatcher)
     {
         this.dataWatcher = dataWatcher;
+        this.cityDataDir = cityDataDir;
         this.dataFileName = dataFileName;
-        this.ruleFileName = ruleFileName;
-        dataFileWatcher = new FileSystemWatcher(dataFilePath);
+        dataFileWatcher = new FileSystemWatcher(cityDataDir);
         dataFileWatcher.Changed += OnFileChanged;
         dataFileWatcher.EnableRaisingEvents = true;
         refresh();
@@ -33,21 +34,22 @@ public class DataHandler
 
     private void refresh()
     {
-        FileStream dataStream = File.Open(dataFileWatcher.Path + dataFileName, FileMode.Open);
+        FileStream dataStream = File.Open(cityDataDir+dataFileName+".json", FileMode.Open);
         StreamReader dataReader = new StreamReader(dataStream);
 
-        FileStream ruleStream = File.Open(dataFileWatcher.Path + ruleFileName, FileMode.Open);
-        StreamReader ruleReader = new StreamReader(ruleStream);
+        FileStream conditionsStream = File.Open(cityDataDir+dataFileName+".conditions.json", FileMode.Open);
+        StreamReader conditionsReader = new StreamReader(conditionsStream);
 
         string jsonData = dataReader.ReadToEnd();
-        string jsonRules = ruleReader.ReadToEnd();
+        string jsonConditions = conditionsReader.ReadToEnd();
 
         municipality = JsonUtility.FromJson<Municipality>(jsonData);
+        conditionList = JsonUtility.FromJson<ConditionList>(jsonConditions);
 
         dataStream.Close();
-        ruleStream.Close();
+        conditionsReader.Close();
 
-        dataWatcher.reactToChange(municipality, jsonRules);
+        dataWatcher.reactToChange(municipality, conditionList);
     }
 
 }

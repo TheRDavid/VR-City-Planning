@@ -8,13 +8,14 @@ using UnityEngine;
 public class Road
 {
     public Vector2Int start, end;
+    private float length;
 
     public Vector2Int Start
     {
         get { return start; }
         set { 
             start = value; 
-            this.Length = calculateLength(); 
+            calculateLength(); 
         }
     }
     public Vector2Int End
@@ -22,15 +23,15 @@ public class Road
         get { return end; }
         set { 
             end = value; 
-            this.Length = calculateLength(); 
+            calculateLength(); 
         }
     }
     public float Length { 
         get {
-            return this.Length;
+            return length;
         } 
         private set {
-            this.Length = value;
+            length = value;
         }
     }
 
@@ -38,11 +39,11 @@ public class Road
     {
         this.Start = start;
         this.End = end;
-        this.Length = calculateLength();
+        calculateLength();
     }
 
-    private float calculateLength()
+    public void calculateLength()
     {
-        return Vector2.Distance(Start, End); 
+       this.Length = Vector2.Distance(Start, End); 
     }
 }

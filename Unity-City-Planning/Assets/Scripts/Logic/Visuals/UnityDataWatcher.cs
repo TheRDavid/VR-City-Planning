@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,16 +7,16 @@ public class UnityDataWatcher : MonoBehaviour, IDataWatcher
 {
 
     private bool refreshNeeded = false;
-    private string jsonRules;
+    private ConditionList conditionList = new ConditionList();
     private Municipality municipality;
     private List<GameObject> dataObjects = new List<GameObject>();
 
     public GameObject buildingPrefab;
     public GameObject roadPrefab;
 
-    public void reactToChange(Municipality municipality, string jsonRules)
+    public void reactToChange(Municipality municipality, ConditionList conditionList)
     {
-        this.jsonRules = jsonRules;
+        this.conditionList = conditionList;
         this.municipality = municipality;
         refreshNeeded = true;
     }
@@ -37,18 +38,25 @@ public class UnityDataWatcher : MonoBehaviour, IDataWatcher
                 Destroy(gameObject);
             }
             dataObjects.Clear();
-
             foreach (Building b in municipality.buildings)
             {
                 GameObject go = Instantiate(buildingPrefab, locationToUnityLocation(b.Location), Quaternion.identity);
-                dataObjects.Add(go);
                 
+                foreach (Condition c in conditionList.conditions)
+                {
+                    if (c.isFullfilled(b))
+                    {
+                        applyVisualization(c.visualizer, go);
+                    }
+                }
+
+                dataObjects.Add(go);
 
 
             }
-
             foreach (Road r in municipality.roads)
             {
+                r.calculateLength();
                 Quaternion roadRotation = Quaternion.Euler(0, 0, 0);
                 Vector3Int startLocation = locationToUnityLocation(r.Start);
                 Vector3 midpointLocation = new Vector3(0,0,0);
@@ -101,6 +109,13 @@ public class UnityDataWatcher : MonoBehaviour, IDataWatcher
 
                 // update texture of road
                 road.GetComponentInChildren<MeshRenderer>().material.mainTextureScale = new Vector2(1, roadlength);
+                foreach (Condition c in conditionList.conditions)
+                {
+                    if (c.isFullfilled(r))
+                    {
+                        applyVisualization(c.visualizer, road);
+                    }
+                }
 
                 // add the new road to dataObjects
                 dataObjects.Add(road);
@@ -110,7 +125,23 @@ public class UnityDataWatcher : MonoBehaviour, IDataWatcher
         }
     }
 
-    public Vector3Int locationToUnityLocation(Vector2Int location)
+    private void applyVisualization(Visualizer visualizer, GameObject gameObject)
+    {
+        switch (visualizer.visualizationName)
+        {
+            case "ColorHighlighter":
+                UColorHighlighter uch = gameObject.AddComponent<UColorHighlighter>();
+                uch.setColor(visualizer.floatParams);
+                break;
+            case "SizePulser":
+                USizePulser usp = gameObject.AddComponent<USizePulser>();
+                usp.setScalingAttributes(visualizer.floatParams);
+                break;
+            default: Debug.Log("ERROR: Unknown visualization - " + visualizer.visualizationName); break;
+        }
+    }
+
+    public static Vector3Int locationToUnityLocation(Vector2Int location)
     {
         return new Vector3Int(location.x, 0, location.y);
     }
