@@ -36,10 +36,24 @@ public class UnityDataWatcher : MonoBehaviour, IDataWatcher
             }
             dataObjects.Clear();
 
+            var drawnBuildings = new List<Vector2Int>();
+
             foreach (Building b in municipality.buildings)
             {
+                // another building with the same coordinates exists
+                // or the building overlaps with a road
+                if (drawnBuildings.Contains(b.Location) || collisionDetected(b,municipality.roads)){
+                    if(drawnBuildings.Contains(b.Location)){
+                        Debug.Log("ERROR: Building already exists");
+                    }
+                    //do nothing and go to next building
+                    continue;
+                }
+
                 GameObject go = Instantiate(buildingPrefab, locationToUnityLocation(b.Location), Quaternion.identity);
                 dataObjects.Add(go);
+
+                drawnBuildings.Add(b.Location);
 
                 if (b.Consumption > 3)
                 {
@@ -146,5 +160,39 @@ public class UnityDataWatcher : MonoBehaviour, IDataWatcher
             else return 2; //East
         }
         else return 0;
+    }
+
+    private bool collisionDetected(Building b, List<Road> roads){
+
+        foreach (Road r in roads){
+            int orientation = getOrientation(r);
+
+            bool collision = false;
+
+            // there is a collision if the building is on the road
+            switch (orientation){
+                case 1:
+                    collision = (r.Start.x == b.location.x && r.Start.y <= b.location.y && b.location.y <= r.End.y);
+                    break;
+                case 2:
+                    collision = (r.Start.y == b.location.y && r.Start.x >= b.location.x && b.location.x >= r.End.x);
+                    break;
+                case 3:
+                    collision = (r.Start.x == b.location.x && r.Start.y >= b.location.y && b.location.y >= r.End.y);
+                    break;
+                case 4:
+                    collision = (r.Start.y == b.location.y && r.Start.x <= b.location.x && b.location.x <= r.End.x);
+                    break; 
+                default:
+                    Debug.Log("ERROR");
+                    break;
+            }
+            if (collision){
+                Debug.Log("ERROR: Buildings and roads are overlapping");
+                return true;
+            }
+        }
+
+        return false;
     }
 }
