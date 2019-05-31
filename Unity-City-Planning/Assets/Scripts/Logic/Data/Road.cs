@@ -5,7 +5,7 @@ using System.Runtime.Serialization;
 using UnityEngine;
 
 [Serializable]
-public class Road
+public class Road : MapEntity
 {
     public Vector2Int start, end;
     private float length;
