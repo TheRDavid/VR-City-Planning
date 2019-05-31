@@ -71,7 +71,8 @@ public class Condition
                 else if (conditionType.ToLower().Equals(ConditionTypeNames[(int)ConditionType.smallerEquals]))
                     return fConditionValue >= fValue;
                 else
-                    Debug.Log("ERROR: Unknown Condition Type: " + conditionType); return false;
+                    ErrorHandler.instance.reportError("Unknown Condition Type: " + conditionType);
+                return false;
             }
 
             if (conditionType.ToLower().Equals(ConditionTypeNames[(int)ConditionType.equals]))
@@ -87,7 +88,8 @@ public class Condition
             else if (conditionType.ToLower().Equals(ConditionTypeNames[(int)ConditionType.smallerEquals]))
                 return conditionValue.CompareTo(value) >= 0;
             else
-                Debug.Log("ERROR: Unknown Condition Type: " + conditionType); return false;
+                ErrorHandler.instance.reportError("Unknown Condition Type: " + conditionType);
+            return false;
         }
         return false;
     }

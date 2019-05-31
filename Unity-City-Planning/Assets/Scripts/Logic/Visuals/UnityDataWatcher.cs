@@ -45,10 +45,7 @@ public class UnityDataWatcher : MonoBehaviour, IDataWatcher
                 // or the building overlaps with a road
                 if (drawnBuildings.Contains(b.Location) || collisionDetected(b, municipality.roads))
                 {
-                    if (drawnBuildings.Contains(b.Location))
-                    {
-                        Debug.Log("ERROR: Building already exists");
-                    }
+                    ErrorHandler.instance.reportError("An entity already exists at this location", b);
                     //do nothing and go to next building
                     continue;
                 }
@@ -113,7 +110,7 @@ public class UnityDataWatcher : MonoBehaviour, IDataWatcher
                         midpointLocation = new Vector3(midpoint, 0, r.Start.y);
                         break;
                     default:
-                        Debug.Log("ERROR, road start- and endpoints must either shape a horizontal or vertical line");
+                        ErrorHandler.instance.reportError("Road start- and endpoints must either shape a horizontal or vertical line", r);
                         break;
                 }
 
@@ -151,7 +148,7 @@ public class UnityDataWatcher : MonoBehaviour, IDataWatcher
                 USizePulser usp = gameObject.AddComponent<USizePulser>();
                 usp.setScalingAttributes(visualizer.floatParams);
                 break;
-            default: Debug.Log("ERROR: Unknown visualization - " + visualizer.visualizationName); break;
+            default: ErrorHandler.instance.reportError("Unknown visualization - " + visualizer.visualizationName); break;
         }
     }
 
@@ -205,12 +202,12 @@ public class UnityDataWatcher : MonoBehaviour, IDataWatcher
                     collision = (r.Start.y == b.location.y && r.Start.x <= b.location.x && b.location.x <= r.End.x);
                     break;
                 default:
-                    Debug.Log("ERROR");
+                    ErrorHandler.instance.reportError("Invalid orientation of road detected", r);
                     break;
             }
             if (collision)
             {
-                Debug.Log("ERROR: Buildings and roads are overlapping");
+                ErrorHandler.instance.reportError("Building is overlapping with a road", b);
                 return true;
             }
         }
