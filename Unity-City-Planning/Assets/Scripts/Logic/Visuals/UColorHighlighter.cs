@@ -16,6 +16,11 @@ public class UColorHighlighter : MonoBehaviour
 
     internal void setColor(float[] floatParams)
     {
+        if (floatParams.Length != 4)
+        {
+            ErrorHandler.instance.reportError("Color Highlighter has an invalid number of parameters");
+            return;
+        }
         color = new Color(floatParams[0], floatParams[1], floatParams[2], floatParams[3]);
         foreach (Renderer r in gameObject.GetComponentsInChildren<Renderer>())
         {

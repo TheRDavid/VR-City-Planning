@@ -33,6 +33,11 @@ public class USizePulser : MonoBehaviour
 
     internal void setScalingAttributes(float[] floatParams)
     {
+        if (floatParams.Length != 4)
+        {
+            ErrorHandler.instance.reportError("Size Pulser has an invalid number of parameters");
+            return;
+        }
         size = new Vector3(floatParams[0], floatParams[1], floatParams[2]);
         duration = floatParams[3];
         defaultSize = gameObject.transform.localScale;

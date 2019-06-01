@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ErrorUI : MonoBehaviour
 {
-    private static int windowWidth = 360, windowHeight = 240;
+    private static int windowWidth = 480, windowHeight = 360;
     private static int windowX = Screen.width / 2 - windowWidth / 2, windowY = Screen.height / 2 - windowHeight / 2;
     private static int windowPaddingX = 10, windowPaddingY = 20;
     private static int windowButtonWidth = 120, windowButtonHeight = 30;
