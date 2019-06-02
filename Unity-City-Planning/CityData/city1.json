@@ -8,58 +8,69 @@
     },
     "buildings": [
         {
+            "ID": "44865030-61c3-41ac-9273-9f8eaf6fe31f",
             "population": 3,
-            "consumption": 5,
+            "consumption": 15,
             "size": {
                 "x": 1,
                 "y": 1,
                 "z": 1
             },
             "location": {
-                "x": 3,
+                "x": 2,
                 "y": 3
+            }
+        },
+        {
+            "ID": "a75eddc1-57d5-4327-b62b-a2ceabbe5107",
+            "population": 0,
+            "consumption": 2,
+            "size": {
+                "x": 1,
+                "y": 1,
+                "z": 1
+            },
+            "location": {
+                "x": 2,
+                "y": 3
+            }
+        },
+        {
+            "ID": "c0e5d42a-cf75-4736-ae16-86129fc73a67",
+            "population": 4,
+            "consumption": 2,
+            "size": {
+                "x": 1,
+                "y": 1,
+                "z": 1
+            },
+            "location": {
+                "x": 2,
+                "y": 7
             }
         }
     ],
     "roads": [
         {
-            "start": {
-                "x": 0,
-                "y": 0
-            },
-            "end": {
-                "x": 0,
-                "y": 5
-            }
-        },
-        {
+            "ID": "47178d89-4c3e-40b8-a2b6-2fb1e48bfa96",
             "start": {
                 "x": 2,
-                "y": 2
-            },
-            "end": {
-                "x": 2,
-                "y": -10
-            }
-        },
-        {
-            "start": {
-                "x": 0,
-                "y": 0
-            },
-            "end": {
-                "x": 5,
-                "y": 0
-            }
-        },
-        {
-            "start": {
-                "x": 1,
                 "y": 1
             },
             "end": {
-                "x": -13,
+                "x": 0,
                 "y": 1
+            }
+        },
+        {
+            "ID": "373f6e6e-9547-4188-b90e-e3faf811e0a7",
+            "start": {
+                "x": 7,
+                "y": 4
+            },
+            "end": {
+                "x": 0,
+                "y": 4
             }
         }
     ]

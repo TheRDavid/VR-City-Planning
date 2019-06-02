@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,14 +7,16 @@ public class UnityDataWatcher : MonoBehaviour, IDataWatcher
 {
 
     private bool refreshNeeded = false;
+    private ConditionList conditionList = new ConditionList();
     private Municipality municipality;
     private List<GameObject> dataObjects = new List<GameObject>();
 
     public GameObject buildingPrefab;
     public GameObject roadPrefab;
 
-    public void reactToChange(Municipality municipality)
+    public void reactToChange(Municipality municipality, ConditionList conditionList)
     {
+        this.conditionList = conditionList;
         this.municipality = municipality;
         refreshNeeded = true;
     }
@@ -35,46 +38,36 @@ public class UnityDataWatcher : MonoBehaviour, IDataWatcher
                 Destroy(gameObject);
             }
             dataObjects.Clear();
-
             var drawnBuildings = new List<Vector2Int>();
-
             foreach (Building b in municipality.buildings)
             {
                 // another building with the same coordinates exists
                 // or the building overlaps with a road
-                if (drawnBuildings.Contains(b.Location) || collisionDetected(b,municipality.roads)){
-                    if(drawnBuildings.Contains(b.Location)){
-                        Debug.Log("ERROR: Building already exists");
-                    }
+                if (drawnBuildings.Contains(b.Location) || collisionDetected(b, municipality.roads))
+                {
+                    ErrorHandler.instance.reportError("An entity already exists at this location", b);
                     //do nothing and go to next building
                     continue;
                 }
 
                 GameObject go = Instantiate(buildingPrefab, locationToUnityLocation(b.Location), Quaternion.identity);
-                dataObjects.Add(go);
 
-                drawnBuildings.Add(b.Location);
-
-                if (b.Consumption > 3)
+                foreach (Condition c in conditionList.conditions)
                 {
-                    foreach (Renderer r in go.GetComponentsInChildren<Renderer>())
+                    if (c.isFullfilled(b))
                     {
-                        r.material.color = Color.red;
-                    }
-                } else
-                {
-                    foreach (Renderer r in go.GetComponentsInChildren<Renderer>())
-                    {
-                        r.material.color = Color.white;
-
+                        applyVisualization(c.visualizer, go);
                     }
                 }
 
+                dataObjects.Add(go);
+                drawnBuildings.Add(b.Location);
+
 
             }
-
             foreach (Road r in municipality.roads)
             {
+                r.calculateLength();
                 Quaternion roadRotation = Quaternion.Euler(0, 0, 0);
                 Vector3Int startLocation = locationToUnityLocation(r.Start);
                 Vector3 midpointLocation = new Vector3(0,0,0);
@@ -117,7 +110,7 @@ public class UnityDataWatcher : MonoBehaviour, IDataWatcher
                         midpointLocation = new Vector3(midpoint, 0, r.Start.y);
                         break;
                     default:
-                        Debug.Log("ERROR, road start- and endpoints must either shape a horizontal or vertical line");
+                        ErrorHandler.instance.reportError("Road start- and endpoints must either shape a horizontal or vertical line", r);
                         break;
                 }
 
@@ -127,6 +120,13 @@ public class UnityDataWatcher : MonoBehaviour, IDataWatcher
 
                 // update texture of road
                 road.GetComponentInChildren<MeshRenderer>().material.mainTextureScale = new Vector2(1, roadlength);
+                foreach (Condition c in conditionList.conditions)
+                {
+                    if (c.isFullfilled(r))
+                    {
+                        applyVisualization(c.visualizer, road);
+                    }
+                }
 
                 // add the new road to dataObjects
                 dataObjects.Add(road);
@@ -136,7 +136,23 @@ public class UnityDataWatcher : MonoBehaviour, IDataWatcher
         }
     }
 
-    public Vector3Int locationToUnityLocation(Vector2Int location)
+    private void applyVisualization(Visualizer visualizer, GameObject gameObject)
+    {
+        switch (visualizer.visualizationName)
+        {
+            case "ColorHighlighter":
+                UColorHighlighter uch = gameObject.AddComponent<UColorHighlighter>();
+                uch.setColor(visualizer.floatParams);
+                break;
+            case "SizePulser":
+                USizePulser usp = gameObject.AddComponent<USizePulser>();
+                usp.setScalingAttributes(visualizer.floatParams);
+                break;
+            default: ErrorHandler.instance.reportError("Unknown visualization - " + visualizer.visualizationName); break;
+        }
+    }
+
+    public static Vector3Int locationToUnityLocation(Vector2Int location)
     {
         return new Vector3Int(location.x, 0, location.y);
     }
@@ -161,16 +177,18 @@ public class UnityDataWatcher : MonoBehaviour, IDataWatcher
         }
         else return 0;
     }
+    private bool collisionDetected(Building b, List<Road> roads)
+    {
 
-    private bool collisionDetected(Building b, List<Road> roads){
-
-        foreach (Road r in roads){
+        foreach (Road r in roads)
+        {
             int orientation = getOrientation(r);
 
             bool collision = false;
 
             // there is a collision if the building is on the road
-            switch (orientation){
+            switch (orientation)
+            {
                 case 1:
                     collision = (r.Start.x == b.location.x && r.Start.y <= b.location.y && b.location.y <= r.End.y);
                     break;
@@ -182,13 +200,14 @@ public class UnityDataWatcher : MonoBehaviour, IDataWatcher
                     break;
                 case 4:
                     collision = (r.Start.y == b.location.y && r.Start.x <= b.location.x && b.location.x <= r.End.x);
-                    break; 
+                    break;
                 default:
-                    Debug.Log("ERROR");
+                    ErrorHandler.instance.reportError("Invalid orientation of road detected", r);
                     break;
             }
-            if (collision){
-                Debug.Log("ERROR: Buildings and roads are overlapping");
+            if (collision)
+            {
+                ErrorHandler.instance.reportError("Building is overlapping with a road", b);
                 return true;
             }
         }

@@ -5,7 +5,7 @@ using System.Runtime.Serialization;
 using UnityEngine;
 
 [Serializable]
-public class Building
+public class Building : MapEntity
 {
     public int population, consumption;
     public Vector3Int size;
