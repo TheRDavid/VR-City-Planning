@@ -51,7 +51,7 @@ public class UnityDataWatcher : MonoBehaviour, IDataWatcher
                 }
 
                 GameObject go = Instantiate(buildingPrefab, locationToUnityLocation(b.Location), Quaternion.identity);
-                
+
                 foreach (Condition c in conditionList.conditions)
                 {
                     if (c.isFullfilled(b))
