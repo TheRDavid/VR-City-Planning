@@ -1,0 +1,51 @@
+{
+    "conditions": [
+        {
+            "conditionName": "Length",
+            "conditionType": "larger",
+            "visualizer": {
+                "floatParams": [
+                    0.0,
+                    0.4000000059604645,
+                    0.5
+                ],
+                "stringParams": [],
+                "intParams": [],
+                "visualizationName": "ColorHighlighter"
+            },
+            "conditionValue": "4"
+        },
+        {
+            "conditionName": "Consumption",
+            "conditionType": "largerequals",
+            "visualizer": {
+                "floatParams": [
+                    1.0,
+                    0.20000000298023225,
+                    0.0,
+                    1.0
+                ],
+                "stringParams": [],
+                "intParams": [],
+                "visualizationName": "ColorHighlighter"
+            },
+            "conditionValue": "10"
+        },
+        {
+            "conditionName": "Population",
+            "conditionType": "equals",
+            "visualizer": {
+                "floatParams": [
+                    1.0,
+                    1.5,
+                    1.0,
+                    1.0
+                ],
+                "stringParams": [],
+                "intParams": [],
+                "visualizationName": "SizePulser"
+            },
+            "conditionValue": "0"
+        }
+    ]
+}
