@@ -67,4 +67,41 @@ public class Road : MapEntity
         }
         else return 0;
     }
+
+    public bool collisionWithBuildings(List<Building> buildings)
+    {
+        int orientation = this.getOrientation();
+
+        foreach (Building b in buildings)
+        {
+            bool collision = false;
+
+            // there is a collision if the building is on the road
+            switch (orientation)
+            {
+                case 1:
+                    collision = (this.Start.x == b.location.x && this.Start.y <= b.location.y && b.location.y <= this.End.y);
+                    break;
+                case 2:
+                    collision = (this.Start.y == b.location.y && this.Start.x >= b.location.x && b.location.x >= this.End.x);
+                    break;
+                case 3:
+                    collision = (this.Start.x == b.location.x && this.Start.y >= b.location.y && b.location.y >= this.End.y);
+                    break;
+                case 4:
+                    collision = (this.Start.y == b.location.y && this.Start.x <= b.location.x && b.location.x <= this.End.x);
+                    break;
+                default:
+                    ErrorHandler.instance.reportError("Invalid orientation of road detected", this);
+                    break;
+            }
+            if (collision)
+            {
+                ErrorHandler.instance.reportError("A building is overlapping with a road", this);
+                return true;
+            }
+        }
+
+        return false;
+    }
 }

@@ -5,12 +5,10 @@ using UnityEngine.UI;
 using System.IO;
 using System;
 
-public class InsertBuilding : MonoBehaviour
+public class InsertRoad : MonoBehaviour
 {
-    public InputField xCoord;
-    public InputField yCoord;
-    public InputField consumption;
-    public InputField population;
+    public InputField startX, endX;
+    public InputField startY, endY;
 
     // Start is called before the first frame update
     void Start()
@@ -24,29 +22,29 @@ public class InsertBuilding : MonoBehaviour
         
     }
 
-    public void Insert()
-    {
-        int x = 0;
-        int y = 0;
-        int consumptionInput = 0;
-        int populationInput = 0;
+    public void Insert(){
+        int inputStartX = 0;
+        int inputStartY = 0;
+        int inputEndX = 0;
+        int inputEndY = 0;
 
-        if (int.TryParse(xCoord.text, out x) 
-            && int.TryParse(yCoord.text, out y)
-            && int.TryParse(consumption.text, out consumptionInput)
-            && int.TryParse(population.text, out populationInput))
+        if (int.TryParse(startX.text, out inputStartX)
+            && int.TryParse(startY.text, out inputStartY)
+            && int.TryParse(endX.text, out inputEndX)
+            && int.TryParse(endY.text, out inputEndY))
         {
-            Building newBuilding = new Building(consumptionInput, populationInput, new Vector2Int(x, y), Vector3Int.one);
+            Road newRoad = new Road(new Vector2Int(inputStartX, inputStartY),
+                                    new Vector2Int(inputEndX, inputEndY));
 
             string dataPath = "CityData/city1.json";
 
             if (!File.Exists(dataPath))
             {
                 List<Building> buildings = new List<Building>(
-                    new Building[]{newBuilding});
+                    new Building[] { });
 
                 List<Road> roads = new List<Road>(
-                    new Road[] { });
+                    new Road[] { newRoad });
 
                 StreamWriter writer = new StreamWriter(dataPath, false);
                 writer.WriteLine(JsonUtility.ToJson(
@@ -54,8 +52,7 @@ public class InsertBuilding : MonoBehaviour
                     true));
                 writer.Close();
             }
-            else
-            {
+            else {
                 //read the entire JSON file
                 FileStream readStream = File.Open(dataPath, FileMode.Open);
                 StreamReader reader = new StreamReader(readStream);
@@ -73,28 +70,37 @@ public class InsertBuilding : MonoBehaviour
                 catch (Exception ae)
                 {
                     ErrorHandler.instance.reportError("Data file " + readStream.Name + " can not be read as Municipality -> it appears to be corrupt.\nDetails:\n" + ae.ToString());
+
+                    startX.text = "";
+                    startY.text = "";
+                    endX.text = "";
+                    endY.text = "";
+
                     return;
                 }
 
-                //if there are collisions, the building should not be added to the JSON file
-                if (newBuilding.collisionWithBuildings(municipality.buildings) || newBuilding.collisionWithRoads(municipality.roads))
+                //if there are collisions, the road should not be added to the JSON file
+                if (newRoad.collisionWithBuildings(municipality.buildings))
                 {
-                    ErrorHandler.instance.reportError("An entity already exists at this location" + newBuilding.location.ToString());
+                    ErrorHandler.instance.reportError("This road crosses a building! Please choose different start and end points.");
                 }
                 else
                 {
-                    municipality.buildings.Add(newBuilding);
+                    municipality.roads.Add(newRoad);
 
                     StreamWriter writer = new StreamWriter(dataPath, false);
                     writer.WriteLine(JsonUtility.ToJson(municipality));
                     writer.Close();
                 }
+
+                startX.text = "";
+                startY.text = "";
+                endX.text = "";
+                endY.text = "";
             }
-        }
+        } 
         else {
-            ErrorHandler.instance.reportError("Invalid values were entered for the building. Please enter only integer numbers.");
+            ErrorHandler.instance.reportError("Invalid values were entered for the road. Please enter only integer numbers.");
         }
-
-
     }
 }
