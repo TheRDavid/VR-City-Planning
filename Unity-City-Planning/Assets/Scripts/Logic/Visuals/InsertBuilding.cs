@@ -9,6 +9,8 @@ public class InsertBuilding : MonoBehaviour
 {
     public InputField xCoord;
     public InputField yCoord;
+    public InputField consumption;
+    public InputField population;
 
     // Start is called before the first frame update
     void Start()
@@ -26,17 +28,22 @@ public class InsertBuilding : MonoBehaviour
     {
         int x = 0;
         int y = 0;
+        int consumptionInput = 0;
+        int populationInput = 0;
 
-        if (int.TryParse(xCoord.text, out x) && int.TryParse(yCoord.text, out y))
+        if (int.TryParse(xCoord.text, out x) 
+            && int.TryParse(yCoord.text, out y)
+            && int.TryParse(consumption.text, out consumptionInput)
+            && int.TryParse(population.text, out populationInput))
         {
+            Building newBuilding = new Building(consumptionInput, populationInput, new Vector2Int(x, y), Vector3Int.one);
+
             string dataPath = "CityData/city1.json";
 
             if (!File.Exists(dataPath))
             {
                 List<Building> buildings = new List<Building>(
-                    new Building[]{
-                new Building(2,3, new Vector2Int(x,y),Vector3Int.one),
-                });
+                    new Building[]{newBuilding});
 
                 List<Road> roads = new List<Road>(
                     new Road[] { });
@@ -69,8 +76,6 @@ public class InsertBuilding : MonoBehaviour
                     return;
                 }
 
-                Building newBuilding = new Building(2, 3, new Vector2Int(x, y), Vector3Int.one);
-
                 if (newBuilding.collisionWithBuildings(municipality.buildings) || newBuilding.collisionWithRoads(municipality.roads))
                 {
                     //if there are collisions, the building should not be added to the JSON file
@@ -87,7 +92,8 @@ public class InsertBuilding : MonoBehaviour
             }
         }
         else {
-            Debug.Log("Invalid values entered for coordinates");
+            ErrorHandler.instance.reportError("Invalid values were entered for the building. Please enter only integer numbers.");
+
         }
 
 
