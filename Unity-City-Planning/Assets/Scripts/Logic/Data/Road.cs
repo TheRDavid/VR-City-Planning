@@ -46,4 +46,25 @@ public class Road : MapEntity
     {
        this.Length = Vector2.Distance(Start, End); 
     }
+
+    public int getOrientation() //1 = north, 2 = east, 3 = south, 4 = west
+    {
+        if (this.Start.x == this.End.x) //North or South
+        {
+            if (this.Start.y > this.End.y) //South
+            {
+                return 3;
+            }
+            else return 1; //North
+        }
+        else if (this.Start.y == this.End.y) //East or West
+        {
+            if (this.Start.x > this.End.x) //West
+            {
+                return 4;
+            }
+            else return 2; //East
+        }
+        else return 0;
+    }
 }

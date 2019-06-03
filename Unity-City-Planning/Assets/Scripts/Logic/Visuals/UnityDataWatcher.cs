@@ -43,7 +43,7 @@ public class UnityDataWatcher : MonoBehaviour, IDataWatcher
             {
                 // another building with the same coordinates exists
                 // or the building overlaps with a road
-                if (drawnBuildings.Contains(b.Location) || collisionDetected(b, municipality.roads))
+                if (b.collisionWithBuildings(drawnBuildings) || b.collisionWithRoads(municipality.roads))
                 {
                     ErrorHandler.instance.reportError("An entity already exists at this location", b);
                     //do nothing and go to next building
@@ -72,7 +72,7 @@ public class UnityDataWatcher : MonoBehaviour, IDataWatcher
                 Vector3Int startLocation = locationToUnityLocation(r.Start);
                 Vector3 midpointLocation = new Vector3(0,0,0);
                 int orientation = 0; //1 = north, 2 = east, 3 = south, 4 = west
-                orientation = getOrientation(r);
+                orientation = r.getOrientation();
                 float roadlength = 0;
                 float midpoint = 0;
 
@@ -157,61 +157,4 @@ public class UnityDataWatcher : MonoBehaviour, IDataWatcher
         return new Vector3Int(location.x, 0, location.y);
     }
 
-    private int getOrientation(Road r) //1 = north, 2 = east, 3 = south, 4 = west
-    {
-        if (r.Start.x == r.End.x) //North or South
-        {
-            if (r.Start.y > r.End.y) //South
-            {
-                return 3;
-            }
-            else return 1; //North
-        }
-        else if (r.Start.y == r.End.y) //East or West
-        {
-            if (r.Start.x > r.End.x) //West
-            {
-                return 4;
-            }
-            else return 2; //East
-        }
-        else return 0;
-    }
-    private bool collisionDetected(Building b, List<Road> roads)
-    {
-
-        foreach (Road r in roads)
-        {
-            int orientation = getOrientation(r);
-
-            bool collision = false;
-
-            // there is a collision if the building is on the road
-            switch (orientation)
-            {
-                case 1:
-                    collision = (r.Start.x == b.location.x && r.Start.y <= b.location.y && b.location.y <= r.End.y);
-                    break;
-                case 2:
-                    collision = (r.Start.y == b.location.y && r.Start.x >= b.location.x && b.location.x >= r.End.x);
-                    break;
-                case 3:
-                    collision = (r.Start.x == b.location.x && r.Start.y >= b.location.y && b.location.y >= r.End.y);
-                    break;
-                case 4:
-                    collision = (r.Start.y == b.location.y && r.Start.x <= b.location.x && b.location.x <= r.End.x);
-                    break;
-                default:
-                    ErrorHandler.instance.reportError("Invalid orientation of road detected", r);
-                    break;
-            }
-            if (collision)
-            {
-                ErrorHandler.instance.reportError("Building is overlapping with a road", b);
-                return true;
-            }
-        }
-
-        return false;
-    }
 }

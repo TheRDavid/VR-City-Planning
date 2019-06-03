@@ -673,7 +673,6 @@ GameObject:
   - component: {fileID: 511891155}
   - component: {fileID: 511891154}
   - component: {fileID: 511891153}
-  - component: {fileID: 511891156}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -745,7 +744,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 840801028}
-        m_MethodName: ButtonClick
+        m_MethodName: Insert
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -794,18 +793,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 511891151}
   m_CullTransparentMesh: 0
---- !u!114 &511891156
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 511891151}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f4eccd6b91a9411fab3a08873d34276, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &525003884
 GameObject:
   m_ObjectHideFlags: 0
@@ -1050,7 +1037,6 @@ GameObject:
   - component: {fileID: 840801027}
   - component: {fileID: 840801026}
   - component: {fileID: 840801025}
-  - component: {fileID: 840801029}
   - component: {fileID: 840801028}
   m_Layer: 5
   m_Name: XCoordInput
@@ -1193,23 +1179,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 840801023}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a092228e55414a338dc15bf43238f5f, type: 3}
+  m_Script: {fileID: 11500000, guid: ed342fbfdeaa24bdf9c1337aec44d4a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   xCoord: {fileID: 840801025}
   yCoord: {fileID: 196562191}
---- !u!114 &840801029
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 840801023}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b3d9774edb3f14ffebd5e12f3a1948ee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1019248377
 GameObject:
   m_ObjectHideFlags: 0
@@ -1877,7 +1851,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2033632552}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5400ff0e0344249a7b9b44b9fb3bc5f7, type: 3}
+  m_Script: {fileID: 11500000, guid: be822c9b871e6441092be68399ad7132, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &2033632554
