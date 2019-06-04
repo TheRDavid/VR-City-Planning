@@ -22,20 +22,6 @@
             }
         },
         {
-            "ID": "a75eddc1-57d5-4327-b62b-a2ceabbe5107",
-            "population": 0,
-            "consumption": 2,
-            "size": {
-                "x": 1,
-                "y": 1,
-                "z": 1
-            },
-            "location": {
-                "x": 2,
-                "y": 3
-            }
-        },
-        {
             "ID": "c0e5d42a-cf75-4736-ae16-86129fc73a67",
             "population": 4,
             "consumption": 2,

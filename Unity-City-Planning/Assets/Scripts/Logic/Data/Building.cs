@@ -69,13 +69,13 @@ public class Building : MapEntity
                     collision = (r.Start.x == this.location.x && r.Start.y <= this.location.y && this.location.y <= r.End.y);
                     break;
                 case 2:
-                    collision = (r.Start.y == this.location.y && r.Start.x >= this.location.x && this.location.x >= r.End.x);
+                    collision = (r.Start.y == this.location.y && r.Start.x <= this.location.x && this.location.x <= r.End.x);
                     break;
                 case 3:
                     collision = (r.Start.x == this.location.x && r.Start.y >= this.location.y && this.location.y >= r.End.y);
                     break;
                 case 4:
-                    collision = (r.Start.y == this.location.y && r.Start.x <= this.location.x && this.location.x <= r.End.x);
+                    collision = (r.Start.y == this.location.y && r.Start.x >= this.location.x && this.location.x >= r.End.x);
                     break;
                 default:
                     ErrorHandler.instance.reportError("Invalid orientation of road detected", r);
