@@ -22,9 +22,9 @@ public class Main : MonoBehaviour
         {
             List<Building> buildings = new List<Building>(
                 new Building[]{
-                new Building(15,3, new Vector2Int(2,3), Vector3Int.one),
-                new Building(2,0,  new Vector2Int(2,3), Vector3Int.one),
-                new Building(2,4,  new Vector2Int(2,3), Vector3Int.one)
+                new Building(15,3, new Vector2Int(2,3), Vector3Int.one, "Default"),
+                new Building(2,0,  new Vector2Int(2,3), Vector3Int.one, "Default"),
+                new Building(2,4,  new Vector2Int(2,3), Vector3Int.one, "Default")
             });
 
 

@@ -12,6 +12,10 @@ public class Building : MapEntity
     public Vector3Int size;
     public Vector2Int location;
 
+    public string Category;
+    public static readonly List<string> BuildingCategories = new List<string>(
+        new string[] { "Default", "Business", "Industrial" });
+
     public int Consumption {
         get { return consumption; }
         set { consumption = value; updateScore(); }
@@ -32,12 +36,22 @@ public class Building : MapEntity
     }
     public int buildingScore { get; private set; }
 
-    public Building(int consumption, int population, Vector2Int location, Vector3Int size)
+    public Building(int consumption, int population, Vector2Int location, Vector3Int size, string cat)
     {
         this.Consumption = consumption;
         this.Population = population;
         this.Location = location;
         this.Size = size;
+
+        if (BuildingCategories.Contains(cat))
+        {
+            this.Category = cat;
+        }
+        else
+        {
+            Debug.Log("Invalid building category entered");
+        }
+
         updateScore();
     }
 

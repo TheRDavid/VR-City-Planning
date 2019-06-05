@@ -11,7 +11,9 @@ public class UnityDataWatcher : MonoBehaviour, IDataWatcher
     private Municipality municipality;
     private List<GameObject> dataObjects = new List<GameObject>();
 
-    public GameObject buildingPrefab;
+    public GameObject defaultBuildingPrefab;
+    public GameObject businessBuildingPrefab;
+    public GameObject industrialBuildingPrefab;
     public GameObject roadPrefab;
 
     public void reactToChange(Municipality municipality, ConditionList conditionList)
@@ -24,7 +26,9 @@ public class UnityDataWatcher : MonoBehaviour, IDataWatcher
     // Start is called before the first frame update
     void Start()
     {
-        buildingPrefab = Resources.Load("Prefabs/Building") as GameObject;
+        defaultBuildingPrefab = Resources.Load("Prefabs/Building") as GameObject;
+        businessBuildingPrefab = Resources.Load("Prefabs/BusinessFlat") as GameObject;
+        industrialBuildingPrefab = Resources.Load("Prefabs/Industrial") as GameObject;
         roadPrefab = Resources.Load("Prefabs/Road") as GameObject;
     }
 
@@ -50,7 +54,24 @@ public class UnityDataWatcher : MonoBehaviour, IDataWatcher
                     continue;
                 }
 
-                GameObject go = Instantiate(buildingPrefab, locationToUnityLocation(b.Location), Quaternion.identity);
+                GameObject go;
+
+                switch (b.Category)
+                {
+                    case "Business":
+                        go = Instantiate(businessBuildingPrefab, locationToUnityLocation(b.Location), Quaternion.identity);
+                        break;
+                    case "Industrial":
+                        go = Instantiate(industrialBuildingPrefab, locationToUnityLocation(b.Location), Quaternion.identity);
+                        break;
+                    case "Default":
+                        go = Instantiate(defaultBuildingPrefab, locationToUnityLocation(b.Location), Quaternion.identity);
+                        break;
+                    default:
+                        go = Instantiate(defaultBuildingPrefab, locationToUnityLocation(b.Location), Quaternion.identity);
+                        ErrorHandler.instance.reportError("Invalid building category: " + b.Category); 
+                        break;
+                }
 
                 foreach (Condition c in conditionList.conditions)
                 {

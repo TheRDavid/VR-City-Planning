@@ -19,77 +19,23 @@
             "location": {
                 "x": 2,
                 "y": 3
-            }
-        },
-        {
-            "ID": "c0e5d42a-cf75-4736-ae16-86129fc73a67",
-            "population": 4,
-            "consumption": 2,
-            "size": {
-                "x": 1,
-                "y": 1,
-                "z": 1
             },
-            "location": {
-                "x": 2,
-                "y": 7
-            }
+            "Category": "Business"
         },
         {
-            "ID": "a5bd96e0-e3c8-4144-b7e5-47ba60b6fee4",
+            "ID": "10dd8b72-ebcd-4e1b-8fea-c1af672932c6",
             "population": 3,
-            "consumption": 5,
+            "consumption": 3,
             "size": {
                 "x": 1,
                 "y": 1,
                 "z": 1
             },
             "location": {
-                "x": 0,
-                "y": 0
-            }
-        },
-        {
-            "ID": "9355adcd-0368-4e15-ab77-1d26e60b4267",
-            "population": 3,
-            "consumption": 5,
-            "size": {
-                "x": 1,
-                "y": 1,
-                "z": 1
+                "x": -2,
+                "y": -2
             },
-            "location": {
-                "x": 1,
-                "y": 0
-            }
-        },
-        {
-            "ID": "b798faa4-8038-4efc-804f-b1ad7771a309",
-            "population": 3,
-            "consumption": 5,
-            "size": {
-                "x": 1,
-                "y": 1,
-                "z": 1
-            },
-            "location": {
-                "x": 0,
-                "y": 2
-            }
-        },
-        {
-            "ID": "24b4fe5f-3c6a-4000-8267-f13563e2f287",
-            "population": 5,
-            "consumption": 5,
-            "size": {
-                "x": 1,
-                "y": 1,
-                "z": 1
-            },
-            "location": {
-                "x": 5,
-                "y": 5
-            }
+            "Category": "Industrial"
         }
     ],
     "roads": [
@@ -113,39 +59,6 @@
             "end": {
                 "x": 0,
                 "y": 4
-            }
-        },
-        {
-            "ID": "5a049973-63ab-436b-8531-643d2104a62f",
-            "start": {
-                "x": -2,
-                "y": 0
-            },
-            "end": {
-                "x": -4,
-                "y": 0
-            }
-        },
-        {
-            "ID": "fbf48402-4b42-4b1a-bcc3-b7473b74c5e9",
-            "start": {
-                "x": 2,
-                "y": 0
-            },
-            "end": {
-                "x": 4,
-                "y": 0
-            }
-        },
-        {
-            "ID": "bb71b094-aa1a-4756-bc46-621674937d8a",
-            "start": {
-                "x": -4,
-                "y": -2
-            },
-            "end": {
-                "x": -2,
-                "y": -2
             }
         }
     ]

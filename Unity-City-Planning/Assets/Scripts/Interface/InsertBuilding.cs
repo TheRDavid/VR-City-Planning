@@ -12,10 +12,14 @@ public class InsertBuilding : MonoBehaviour
     public InputField consumption;
     public InputField population;
 
+    public Dropdown categoryDropdown;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        //populate the dropdown with building categories
+        categoryDropdown.ClearOptions();
+        categoryDropdown.AddOptions(Building.BuildingCategories);
     }
 
     // Update is called once per frame
@@ -36,7 +40,9 @@ public class InsertBuilding : MonoBehaviour
             && int.TryParse(consumption.text, out consumptionInput)
             && int.TryParse(population.text, out populationInput))
         {
-            Building newBuilding = new Building(consumptionInput, populationInput, new Vector2Int(x, y), Vector3Int.one);
+            string category = Building.BuildingCategories[categoryDropdown.value];
+
+            Building newBuilding = new Building(consumptionInput, populationInput, new Vector2Int(x, y), Vector3Int.one, category);
 
             string dataPath = "CityData/city1.json";
 
@@ -94,6 +100,7 @@ public class InsertBuilding : MonoBehaviour
                 yCoord.text = "";
                 consumption.text = "";
                 population.text = "";
+                categoryDropdown.value = 0;
             }
         }
         else {
