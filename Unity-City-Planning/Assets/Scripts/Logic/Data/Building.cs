@@ -72,30 +72,7 @@ public class Building : MapEntity
     public bool collisionWithRoads(List<Road> roads){
         foreach (Road r in roads)
         {
-            int orientation = r.getOrientation();
-
-            bool collision = false;
-
-            // there is a collision if the building is on the road
-            switch (orientation)
-            {
-                case 1:
-                    collision = (r.Start.x == this.location.x && r.Start.y <= this.location.y && this.location.y <= r.End.y);
-                    break;
-                case 2:
-                    collision = (r.Start.y == this.location.y && r.Start.x <= this.location.x && this.location.x <= r.End.x);
-                    break;
-                case 3:
-                    collision = (r.Start.x == this.location.x && r.Start.y >= this.location.y && this.location.y >= r.End.y);
-                    break;
-                case 4:
-                    collision = (r.Start.y == this.location.y && r.Start.x >= this.location.x && this.location.x >= r.End.x);
-                    break;
-                default:
-                    ErrorHandler.instance.reportError("Invalid orientation of road detected", r);
-                    break;
-            }
-            if (collision)
+            if (collide(this, r))
             {
                 ErrorHandler.instance.reportError("Building is overlapping with a road", this);
                 return true;

@@ -44,64 +44,14 @@ public class InsertBuilding : MonoBehaviour
 
             Building newBuilding = new Building(consumptionInput, populationInput, new Vector2Int(x, y), Vector3Int.one, category);
 
-            string dataPath = "CityData/city1.json";
+            Municipality.InsertBuilding(newBuilding);
 
-            if (!File.Exists(dataPath))
-            {
-                List<Building> buildings = new List<Building>(
-                    new Building[]{newBuilding});
+            xCoord.text = "";
+            yCoord.text = "";
+            consumption.text = "";
+            population.text = "";
+            categoryDropdown.value = 0;
 
-                List<Road> roads = new List<Road>(
-                    new Road[] { });
-
-                StreamWriter writer = new StreamWriter(dataPath, false);
-                writer.WriteLine(JsonUtility.ToJson(
-                    new Municipality(buildings, roads, 0, Vector2Int.zero),
-                    true));
-                writer.Close();
-            }
-            else
-            {
-                //read the entire JSON file
-                FileStream readStream = File.Open(dataPath, FileMode.Open);
-                StreamReader reader = new StreamReader(readStream);
-                reader.BaseStream.Seek(0, SeekOrigin.Begin);
-
-                string jsonData = reader.ReadToEnd();
-                readStream.Close();
-
-                Municipality municipality;
-
-                try
-                {
-                    municipality = JsonUtility.FromJson<Municipality>(jsonData);
-                }
-                catch (Exception ae)
-                {
-                    ErrorHandler.instance.reportError("Data file " + readStream.Name + " can not be read as Municipality -> it appears to be corrupt.\nDetails:\n" + ae.ToString());
-                    return;
-                }
-
-                //if there are collisions, the building should not be added to the JSON file
-                if (newBuilding.collisionWithBuildings(municipality.buildings) || newBuilding.collisionWithRoads(municipality.roads))
-                {
-                    ErrorHandler.instance.reportError("An entity already exists at this location" + newBuilding.location.ToString());
-                }
-                else
-                {
-                    municipality.buildings.Add(newBuilding);
-
-                    StreamWriter writer = new StreamWriter(dataPath, false);
-                    writer.WriteLine(JsonUtility.ToJson(municipality, true));
-                    writer.Close();
-                }
-
-                xCoord.text = "";
-                yCoord.text = "";
-                consumption.text = "";
-                population.text = "";
-                categoryDropdown.value = 0;
-            }
         }
         else {
             ErrorHandler.instance.reportError("Invalid values were entered for the building. Please enter only integer numbers.");
