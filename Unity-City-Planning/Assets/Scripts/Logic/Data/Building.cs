@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 using UnityEngine;
+using System.Linq;
 
 [Serializable]
 public class Building : MapEntity
@@ -10,6 +11,10 @@ public class Building : MapEntity
     public int population, consumption;
     public Vector3Int size;
     public Vector2Int location;
+
+    public string Category;
+    public static readonly List<string> BuildingCategories = new List<string>(
+        new string[] { "Default", "Business", "Industrial" });
 
     public int Consumption {
         get { return consumption; }
@@ -31,17 +36,49 @@ public class Building : MapEntity
     }
     public int buildingScore { get; private set; }
 
-    public Building(int consumption, int population, Vector2Int location, Vector3Int size)
+    public Building(int consumption, int population, Vector2Int location, Vector3Int size, string cat)
     {
         this.Consumption = consumption;
         this.Population = population;
         this.Location = location;
         this.Size = size;
+
+        if (BuildingCategories.Contains(cat))
+        {
+            this.Category = cat;
+        }
+        else
+        {
+            Debug.Log("Invalid building category entered");
+        }
+
         updateScore();
     }
 
     public void updateScore()
     {
         buildingScore = this.Population + this.Consumption + (int) this.Size.magnitude;
+    }
+
+    public bool collisionWithBuildings(List<Building> buildings){
+        var coordinates = buildings.Select((building, index) => building.location);
+        return coordinates.Contains(this.location);
+    }
+
+    public bool collisionWithBuildings(List<Vector2Int> buildings){
+        return buildings.Contains(this.location);
+    }
+
+    public bool collisionWithRoads(List<Road> roads){
+        foreach (Road r in roads)
+        {
+            if (collide(this, r))
+            {
+                ErrorHandler.instance.reportError("Building is overlapping with a road", this);
+                return true;
+            }
+        }
+
+        return false;
     }
 }

@@ -1,21 +1,6 @@
 {
     "conditions": [
         {
-            "conditionName": "Length",
-            "conditionType": "larger",
-            "visualizer": {
-                "floatParams": [
-                    0.0,
-                    0.4000000059604645,
-                    0.5
-                ],
-                "stringParams": [],
-                "intParams": [],
-                "visualizationName": "ColorHighlighter"
-            },
-            "conditionValue": "4"
-        },
-        {
             "conditionName": "Consumption",
             "conditionType": "largerequals",
             "visualizer": {

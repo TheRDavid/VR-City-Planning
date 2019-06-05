@@ -19,12 +19,58 @@
             "location": {
                 "x": 2,
                 "y": 3
-            }
+            },
+            "Category": "Business"
         },
         {
-            "ID": "a75eddc1-57d5-4327-b62b-a2ceabbe5107",
-            "population": 0,
-            "consumption": 2,
+            "ID": "10dd8b72-ebcd-4e1b-8fea-c1af672932c6",
+            "population": 3,
+            "consumption": 3,
+            "size": {
+                "x": 1,
+                "y": 1,
+                "z": 1
+            },
+            "location": {
+                "x": -2,
+                "y": -2
+            },
+            "Category": "Industrial"
+        },
+        {
+            "ID": "6a7d328a-5ef7-4a5f-a04f-08c614a3e3f9",
+            "population": 10,
+            "consumption": 10,
+            "size": {
+                "x": 1,
+                "y": 1,
+                "z": 1
+            },
+            "location": {
+                "x": 10,
+                "y": 10
+            },
+            "Category": "Default"
+        },
+        {
+            "ID": "291d2f5d-4d61-41c8-8b0d-dfe0e53e89c7",
+            "population": 6,
+            "consumption": 6,
+            "size": {
+                "x": 1,
+                "y": 1,
+                "z": 1
+            },
+            "location": {
+                "x": 6,
+                "y": 6
+            },
+            "Category": "Default"
+        },
+        {
+            "ID": "2bae1b9a-0829-4858-9c9d-c8347d456daa",
+            "population": 20,
+            "consumption": 0,
             "size": {
                 "x": 1,
                 "y": 1,
@@ -32,22 +78,24 @@
             },
             "location": {
                 "x": 2,
-                "y": 3
-            }
+                "y": 2
+            },
+            "Category": "Default"
         },
         {
-            "ID": "c0e5d42a-cf75-4736-ae16-86129fc73a67",
-            "population": 4,
-            "consumption": 2,
+            "ID": "a3f42d12-bc66-49af-8d69-126bd62cb233",
+            "population": 22,
+            "consumption": 22,
             "size": {
                 "x": 1,
                 "y": 1,
                 "z": 1
             },
             "location": {
-                "x": 2,
-                "y": 7
-            }
+                "x": 12,
+                "y": 12
+            },
+            "Category": "Default"
         }
     ],
     "roads": [
@@ -71,6 +119,39 @@
             "end": {
                 "x": 0,
                 "y": 4
+            }
+        },
+        {
+            "ID": "2f277893-c48e-48aa-90dc-4fa107f51e0c",
+            "start": {
+                "x": 10,
+                "y": 0
+            },
+            "end": {
+                "x": -10,
+                "y": 0
+            }
+        },
+        {
+            "ID": "3e6e9934-6a29-4138-bb93-e58408bc013f",
+            "start": {
+                "x": 10,
+                "y": 0
+            },
+            "end": {
+                "x": 8,
+                "y": 0
+            }
+        },
+        {
+            "ID": "622b5379-f97e-4b51-ad6c-b03d74e7eefb",
+            "start": {
+                "x": 0,
+                "y": -10
+            },
+            "end": {
+                "x": 0,
+                "y": 10
             }
         }
     ]
