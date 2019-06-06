@@ -39,7 +39,7 @@ namespace Valve.VR
         public string editorAppKey;
 
         [Tooltip("The SteamVR Plugin can automatically make sure VR is enabled in your player settings and if not, enable it.")]
-        public bool autoEnableVR = true;
+        public bool autoEnableVR = false;
 
         public bool IsInputUpdateMode(SteamVR_UpdateModes tocheck)
         {
