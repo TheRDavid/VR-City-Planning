@@ -7,7 +7,7 @@ using System;
 [Serializable]
 public class Municipality
 {
-    public int streetSpace, buildingSpace, greenSpace;
+    [System.NonSerialized] public int streetSpace, buildingSpace, greenSpace;
     public Vector2Int size;
     public List<Building> buildings;
     public List<Road> roads;
@@ -37,18 +37,16 @@ public class Municipality
         set { updateGreenSpace(); }
     }
 
-    public Municipality(List<Building> buildings, List<Road> roads, int streetSpace, Vector2Int size)
+    public Municipality(List<Building> buildings, List<Road> roads, Vector2Int size)
     {
         this.buildings = buildings;
         this.roads = roads;
-        this.StreetSpace = streetSpace;
-        this.Size = size;
+        this.size = size;
         updateStreetSpace();
         updateBuildingSpace();
     }
 
     public void updateSpaces(){
-        Debug.Log("update spaces");
         updateStreetSpace();
         updateBuildingSpace();
     }
@@ -59,7 +57,7 @@ public class Municipality
 
         // No calcs required, streets are only an int for now
         foreach(Road r in roads){
-            space += (int) r.Length;
+            space += Math.Abs((int) r.length());
         }
 
         streetSpace = space;

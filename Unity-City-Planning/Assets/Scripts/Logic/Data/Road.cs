@@ -8,14 +8,12 @@ using UnityEngine;
 public class Road : MapEntity
 {
     public Vector2Int start, end;
-    private float length;
 
     public Vector2Int Start
     {
         get { return start; }
         set { 
             start = value; 
-            calculateLength(); 
         }
     }
     public Vector2Int End
@@ -23,27 +21,17 @@ public class Road : MapEntity
         get { return end; }
         set { 
             end = value; 
-            calculateLength(); 
-        }
-    }
-    public float Length { 
-        get {
-            return length;
-        } 
-        private set {
-            length = value;
         }
     }
 
     public Road(Vector2Int start, Vector2Int end)
     {
-        this.Start = start;
-        this.End = end;
-        calculateLength();
+        this.start = start;
+        this.end = end;
     }
 
-    public void calculateLength()
+    public int length()
     {
-       this.Length = Vector2.Distance(Start, End); 
+        return (int) Vector2Int.Distance(Start, End);
     }
 }

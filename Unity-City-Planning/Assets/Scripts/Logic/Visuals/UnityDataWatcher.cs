@@ -20,7 +20,6 @@ public class UnityDataWatcher : MonoBehaviour, IDataWatcher
         this.conditionList = conditionList;
         this.municipality = municipality;
         this.municipality.updateSpaces();
-        Debug.Log("new size:" + municipality.size);
         refreshNeeded = true;
     }
 
@@ -75,7 +74,6 @@ public class UnityDataWatcher : MonoBehaviour, IDataWatcher
             }
             foreach (Road r in municipality.roads)
             {
-                r.calculateLength();
                 Quaternion roadRotation = Quaternion.Euler(0, 0, 0);
                 Vector3Int startLocation = locationToUnityLocation(r.Start);
                 Vector3 midpointLocation = new Vector3(0,0,0);
