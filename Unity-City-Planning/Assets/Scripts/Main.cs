@@ -39,7 +39,7 @@ public class Main : MonoBehaviour
             
             StreamWriter writer = new StreamWriter(dataPath, false);
             writer.WriteLine(JsonUtility.ToJson(
-                new Municipality(buildings, roads, new Vector2Int(10,10)), 
+                new Municipality(buildings, roads, 0, new Vector2Int(10,10), 0.5, 200), 
                 true));
             writer.Close();
         }
