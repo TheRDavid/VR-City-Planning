@@ -18,6 +18,9 @@ public class Municipality
     public double renewableEnergyProduction;
     public int CO2Emissions;
 
+    public double commercialAccess;
+    public double natureAccess;
+
     // We will need to change from an int as street space to actual streets (two coordinates that are connected)
     public int StreetSpace
     {
@@ -95,7 +98,8 @@ public class Municipality
         int totalPop = 0;
         int totalCons = 0;
 
-        foreach(Building b in this.buildings){
+        foreach (Building b in this.buildings)
+        {
             totalPop += b.population;
             totalCons = b.consumption;
         }
@@ -104,5 +108,36 @@ public class Municipality
         this.totalConsumption = totalCons;
         this.populationDensity = this.totalPopulation / (this.Size.x * this.Size.y);
     }
+
+    public void calculateCommercialAccess(){
+        int peopleWithAccess = 0;
+
+        foreach (Building b in this.buildings){
+
+            foreach (Building ind in this.buildings){
+
+                if (ind.Category != "Business"){
+                    continue;
+                }
+
+                if (ind.distance(b) <= 50){
+                    peopleWithAccess += b.population;
+                    break;
+                }
+            }
+        }
+
+        commercialAccess = peopleWithAccess / totalPopulation;
+    }
+
+    public void calculateNatureAccess(){
+        int peopleWithAccess = 0;
+
+        foreach (Building b in this.buildings)
+        {
+
+        }
+    }
+
 
 }
