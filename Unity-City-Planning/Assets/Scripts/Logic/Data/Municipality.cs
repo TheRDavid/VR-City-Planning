@@ -16,7 +16,7 @@ public class Municipality
     public int StreetSpace
     {
         get { return streetSpace; }
-        set { }
+        private set { }
     }
 
     public int BuildingSpace
@@ -47,12 +47,20 @@ public class Municipality
         updateBuildingSpace();
     }
 
+    public void updateSpaces(){
+        Debug.Log("update spaces");
+        updateStreetSpace();
+        updateBuildingSpace();
+    }
+
     private void updateStreetSpace()
     {
         int space = 0;
 
         // No calcs required, streets are only an int for now
-        space = streetSpace;
+        foreach(Road r in roads){
+            space += (int) r.Length;
+        }
 
         streetSpace = space;
         updateGreenSpace();

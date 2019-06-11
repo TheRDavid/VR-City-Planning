@@ -13,11 +13,14 @@ public class UnityDataWatcher : MonoBehaviour, IDataWatcher
 
     public GameObject buildingPrefab;
     public GameObject roadPrefab;
+    public GameObject grassPrefab;
 
     public void reactToChange(Municipality municipality, ConditionList conditionList)
     {
         this.conditionList = conditionList;
         this.municipality = municipality;
+        this.municipality.updateSpaces();
+        Debug.Log("new size:" + municipality.size);
         refreshNeeded = true;
     }
 
@@ -26,6 +29,7 @@ public class UnityDataWatcher : MonoBehaviour, IDataWatcher
     {
         buildingPrefab = Resources.Load("Prefabs/Building") as GameObject;
         roadPrefab = Resources.Load("Prefabs/Road") as GameObject;
+        grassPrefab = Resources.Load("Prefabs/Grass") as GameObject;
     }
 
     // Update is called once per frame
@@ -38,6 +42,10 @@ public class UnityDataWatcher : MonoBehaviour, IDataWatcher
                 Destroy(gameObject);
             }
             dataObjects.Clear();
+
+            GameObject greenspace = Instantiate(grassPrefab, new Vector3(municipality.size.x / 2, (float)-0.0001, municipality.size.y / 2), Quaternion.identity);
+            greenspace.transform.localScale += new Vector3(municipality.size.x, 0, municipality.size.y);
+
             var drawnBuildings = new List<Vector2Int>();
             foreach (Building b in municipality.buildings)
             {
