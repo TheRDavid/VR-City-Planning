@@ -12,6 +12,12 @@ public class Municipality
     public List<Building> buildings;
     public List<Road> roads;
 
+    public int totalPopulation;
+    public int totalConsumption;
+    public double populationDensity;
+    public double renewableEnergyProduction;
+    public int CO2Emissions;
+
     // We will need to change from an int as street space to actual streets (two coordinates that are connected)
     public int StreetSpace
     {
@@ -34,17 +40,25 @@ public class Municipality
     public Vector2Int Size
     {
         get { return size; }
-        set { updateGreenSpace(); }
+        set { 
+            updateGreenSpace();
+            calculatePopulationConsumption();
+        }
     }
 
-    public Municipality(List<Building> buildings, List<Road> roads, int streetSpace, Vector2Int size)
+    public Municipality(List<Building> buildings, List<Road> roads, int streetSpace, Vector2Int size, double energyProd, int CO2)
     {
         this.buildings = buildings;
         this.roads = roads;
         this.StreetSpace = streetSpace;
         this.Size = size;
+        this.renewableEnergyProduction = energyProd;
+        this.CO2Emissions = CO2;
+
         updateStreetSpace();
         updateBuildingSpace();
+
+        calculatePopulationConsumption();
     }
 
     private void updateStreetSpace()
@@ -73,6 +87,22 @@ public class Municipality
 
     private void updateGreenSpace()
     {
-        greenSpace = size.x * size.y - streetSpace - buildingSpace;
+        greenSpace = Size.x * Size.y - streetSpace - buildingSpace;
     }
+
+    private void calculatePopulationConsumption()
+    {
+        int totalPop = 0;
+        int totalCons = 0;
+
+        foreach(Building b in this.buildings){
+            totalPop += b.population;
+            totalCons = b.consumption;
+        }
+
+        this.totalPopulation = totalPop;
+        this.totalConsumption = totalCons;
+        this.populationDensity = this.totalPopulation / (this.Size.x * this.Size.y);
+    }
+
 }

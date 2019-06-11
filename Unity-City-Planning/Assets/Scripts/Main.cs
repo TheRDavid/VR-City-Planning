@@ -36,7 +36,7 @@ public class Main : MonoBehaviour
             
             StreamWriter writer = new StreamWriter(dataPath, false);
             writer.WriteLine(JsonUtility.ToJson(
-                new Municipality(buildings, roads, 0, Vector2Int.zero), 
+                new Municipality(buildings, roads, 0, Vector2Int.zero, 0.5, 200), 
                 true));
             writer.Close();
         }
