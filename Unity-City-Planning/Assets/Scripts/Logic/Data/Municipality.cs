@@ -73,7 +73,7 @@ public class Municipality
 
         // No calcs required, streets are only an int for now
         foreach(Road r in roads){
-            space += Math.Abs((int) r.length());
+            space += Math.Abs((int) r.Length);
         }
 
         streetSpace = space;

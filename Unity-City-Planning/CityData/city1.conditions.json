@@ -5,16 +5,16 @@
             "conditionType": "larger",
             "visualizer": {
                 "floatParams": [
+                    1.0,
+                    0.20000000298023225,
                     0.0,
-                    0.4000000059604645,
-                    0.5,
-                    0.75
+                    1.0
                 ],
                 "stringParams": [],
                 "intParams": [],
                 "visualizationName": "ColorHighlighter"
             },
-            "conditionValue": "4"
+            "conditionValue": "5"
         },
         {
             "conditionName": "Consumption",

@@ -5,7 +5,7 @@
     },
     "buildings": [
         {
-            "ID": "72b71b8a-1c08-4206-9c07-5949164830f2",
+            "ID": "59c23739-aed3-496e-8ab2-5b4df1d68b0f",
             "population": 3,
             "consumption": 15,
             "size": {
@@ -16,10 +16,11 @@
             "location": {
                 "x": 2,
                 "y": 4
-            }
+            },
+            "Category": ""
         },
         {
-            "ID": "e9ad84ad-4c03-4051-9821-37c8fb43c55f",
+            "ID": "318f8279-37e2-4bc8-b053-080626d9b5f1",
             "population": 0,
             "consumption": 2,
             "size": {
@@ -30,10 +31,11 @@
             "location": {
                 "x": 2,
                 "y": 5
-            }
+            },
+            "Category": ""
         },
         {
-            "ID": "cbd7b480-66b5-45c7-8455-91834dfd3de2",
+            "ID": "b1b7a0c4-38c1-4d2f-a32d-a0826dcd2a61",
             "population": 4,
             "consumption": 2,
             "size": {
@@ -44,10 +46,11 @@
             "location": {
                 "x": 2,
                 "y": 6
-            }
+            },
+            "Category": ""
         },
         {
-            "ID": "229eae5e-337d-496f-bbe9-5acb4b8a6fed",
+            "ID": "330632ff-0bba-4706-af49-663eb6913169",
             "population": 3,
             "consumption": 5,
             "size": {
@@ -58,10 +61,11 @@
             "location": {
                 "x": 4,
                 "y": 4
-            }
+            },
+            "Category": ""
         },
         {
-            "ID": "67feffdf-28e6-4033-8570-5e92e9679b7a",
+            "ID": "4eaa72ac-1469-45bf-b7fc-c63da1bd5262",
             "population": 0,
             "consumption": 7,
             "size": {
@@ -72,10 +76,11 @@
             "location": {
                 "x": 4,
                 "y": 5
-            }
+            },
+            "Category": ""
         },
         {
-            "ID": "9d6c4244-b58e-46dd-bdc6-9d686b86f662",
+            "ID": "54c60e5c-7196-40ef-a205-c079e3feeaf2",
             "population": 14,
             "consumption": 2,
             "size": {
@@ -86,12 +91,13 @@
             "location": {
                 "x": 4,
                 "y": 6
-            }
+            },
+            "Category": ""
         }
     ],
     "roads": [
         {
-            "ID": "fb5ead02-2d9a-4853-abbe-42e0514d1ca5",
+            "ID": "fce3f7b7-b362-446b-99eb-14a960226ec3",
             "start": {
                 "x": 3,
                 "y": 1
@@ -99,10 +105,11 @@
             "end": {
                 "x": 3,
                 "y": 7
-            }
+            },
+            "length": 6
         },
         {
-            "ID": "0df253f9-149a-487a-b659-6806893f63c5",
+            "ID": "b848a8d2-fbc1-451b-bd71-8239e6245e8a",
             "start": {
                 "x": 1,
                 "y": 1
@@ -110,7 +117,15 @@
             "end": {
                 "x": 1,
                 "y": 6
-            }
+            },
+            "length": 5
         }
-    ]
+    ],
+    "totalPopulation": 24,
+    "totalConsumption": 2,
+    "populationDensity": 0.0,
+    "renewableEnergyProduction": 0.5,
+    "CO2Emissions": 200,
+    "commercialAccess": 0.0,
+    "natureAccess": 0.0
 }

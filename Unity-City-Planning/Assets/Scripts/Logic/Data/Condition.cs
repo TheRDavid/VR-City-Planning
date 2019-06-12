@@ -58,7 +58,7 @@ public class Condition
             if(float.TryParse(value, out fValue) && float.TryParse(conditionValue, out fConditionValue))
             {
                 // yes, this if-else thing is gross, feel free to impress me with a better way :P
-                if(conditionType.ToLower().Equals(ConditionTypeNames[(int)ConditionType.equals]))
+                if (conditionType.ToLower().Equals(ConditionTypeNames[(int)ConditionType.equals]))
                     return fConditionValue == fValue;
                 else if (conditionType.ToLower().Equals(ConditionTypeNames[(int)ConditionType.notEquals]))
                     return fConditionValue != fValue;

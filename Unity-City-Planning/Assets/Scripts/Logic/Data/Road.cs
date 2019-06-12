@@ -8,30 +8,39 @@ using UnityEngine;
 public class Road : MapEntity
 {
     public Vector2Int start, end;
+    public int length;
 
     public Vector2Int Start
     {
         get { return start; }
         set { 
-            start = value; 
+            start = value;
+            this.length = getLength();
         }
     }
     public Vector2Int End
     {
         get { return end; }
         set { 
-            end = value; 
+            end = value;
+            this.length = getLength();
         }
+    }
+    public int Length
+    {
+        get { return getLength(); }
     }
 
     public Road(Vector2Int start, Vector2Int end)
     {
         this.start = start;
         this.end = end;
+        this.length = getLength();
     }
 
-    public int length()
+    private int getLength()
     {
-        return (int) Vector2Int.Distance(Start, End);
+        this.length = (int) Vector2Int.Distance(Start, End);
+        return length;
     }
 }
