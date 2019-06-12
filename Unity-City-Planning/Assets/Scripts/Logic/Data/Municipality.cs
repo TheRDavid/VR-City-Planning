@@ -137,12 +137,10 @@ public class Municipality
     }
 
     public void calculateNatureAccess(){
-        int peopleWithAccess = 0;
+        // we are currently not tracking the location of greenspace
+        // so instead, we calculate the proportion of greenspace per population
 
-        foreach (Building b in this.buildings)
-        {
-
-        }
+        natureAccess = greenSpace / totalPopulation;
     }
 
 
