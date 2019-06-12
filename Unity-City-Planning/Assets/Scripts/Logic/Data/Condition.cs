@@ -54,8 +54,7 @@ public class Condition
             object oValue = propertyInfo.GetValue(instance);
             string value = oValue.ToString();
 
-            float fConditionValue, fValue;
-            if(float.TryParse(value, out fValue) && float.TryParse(conditionValue, out fConditionValue))
+            if (float.TryParse(value, out float fValue) && float.TryParse(conditionValue, out float fConditionValue))
             {
                 // yes, this if-else thing is gross, feel free to impress me with a better way :P
                 if (conditionType.ToLower().Equals(ConditionTypeNames[(int)ConditionType.equals]))
@@ -93,6 +92,4 @@ public class Condition
         }
         return false;
     }
-    
-   
 }
