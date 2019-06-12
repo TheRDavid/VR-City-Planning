@@ -12,14 +12,14 @@ public class Municipality
     public List<Building> buildings;
     public List<Road> roads;
 
-    public int totalPopulation;
-    public int totalConsumption;
-    public double populationDensity;
+    [System.NonSerialized] public int totalPopulation;
+    [System.NonSerialized] public int totalConsumption;
+    [System.NonSerialized] public double populationDensity;
     public double renewableEnergyProduction;
     public int CO2Emissions;
 
-    public double commercialAccess;
-    public double natureAccess;
+    [System.NonSerialized] public double commercialAccess;
+    [System.NonSerialized] public double natureAccess;
 
     // We will need to change from an int as street space to actual streets (two coordinates that are connected)
     public int StreetSpace
