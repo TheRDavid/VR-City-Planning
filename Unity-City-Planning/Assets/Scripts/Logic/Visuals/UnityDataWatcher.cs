@@ -20,6 +20,7 @@ public class UnityDataWatcher : MonoBehaviour, IDataWatcher
         this.conditionList = conditionList;
         this.municipality = municipality;
         this.municipality.updateSpaces();
+        Municipality.instance = this.municipality;
         refreshNeeded = true;
     }
 

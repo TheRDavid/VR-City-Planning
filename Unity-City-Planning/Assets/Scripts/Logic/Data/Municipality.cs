@@ -7,6 +7,7 @@ using System;
 [Serializable]
 public class Municipality
 {
+    public static Municipality instance;
     [System.NonSerialized] public int streetSpace, buildingSpace, greenSpace;
     public Vector2Int size;
     public List<Building> buildings;
