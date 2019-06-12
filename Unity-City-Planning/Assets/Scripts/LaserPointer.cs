@@ -8,6 +8,7 @@ public class LaserPointer : MonoBehaviour
     public SteamVR_Input_Sources handType;
     public SteamVR_Behaviour_Pose controllerPose;
     public SteamVR_Action_Boolean teleportAction;
+
     public GameObject laserPrefab; // 1
     private GameObject laser; // 2
     private Transform laserTransform; // 3
