@@ -11,6 +11,10 @@ public class Building : MapEntity
     public Vector3Int size;
     public Vector2Int location;
 
+    public string Category;
+    public static readonly List<string> BuildingCategories = new List<string>(
+        new string[] { "Default", "Business", "Industrial" });
+    
     public int Consumption {
         get { return consumption; }
         set { consumption = value; updateScore(); }
@@ -43,5 +47,9 @@ public class Building : MapEntity
     public void updateScore()
     {
         buildingScore = this.Population + this.Consumption + (int) this.Size.magnitude;
+    }
+
+    public double distance(Building other){
+        return Vector2Int.Distance(this.location, other.location);
     }
 }

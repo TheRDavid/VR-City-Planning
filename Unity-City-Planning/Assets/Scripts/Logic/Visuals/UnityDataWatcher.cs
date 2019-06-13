@@ -13,11 +13,13 @@ public class UnityDataWatcher : MonoBehaviour, IDataWatcher
 
     public GameObject buildingPrefab;
     public GameObject roadPrefab;
+    public GameObject grassPrefab;
 
     public void reactToChange(Municipality municipality, ConditionList conditionList)
     {
         this.conditionList = conditionList;
         this.municipality = municipality;
+        this.municipality.updateSpaces();
         refreshNeeded = true;
     }
 
@@ -26,6 +28,7 @@ public class UnityDataWatcher : MonoBehaviour, IDataWatcher
     {
         buildingPrefab = Resources.Load("Prefabs/Building") as GameObject;
         roadPrefab = Resources.Load("Prefabs/Road") as GameObject;
+        grassPrefab = Resources.Load("Prefabs/Grass") as GameObject;
     }
 
     // Update is called once per frame
@@ -38,6 +41,10 @@ public class UnityDataWatcher : MonoBehaviour, IDataWatcher
                 Destroy(gameObject);
             }
             dataObjects.Clear();
+
+            GameObject greenspace = Instantiate(grassPrefab, new Vector3(municipality.size.x / 2, (float)-0.0001, municipality.size.y / 2), Quaternion.identity);
+            greenspace.transform.localScale += new Vector3(municipality.size.x, 0, municipality.size.y);
+
             var drawnBuildings = new List<Vector2Int>();
             foreach (Building b in municipality.buildings)
             {
@@ -67,7 +74,6 @@ public class UnityDataWatcher : MonoBehaviour, IDataWatcher
             }
             foreach (Road r in municipality.roads)
             {
-                r.calculateLength();
                 Quaternion roadRotation = Quaternion.Euler(0, 0, 0);
                 Vector3Int startLocation = locationToUnityLocation(r.Start);
                 Vector3 midpointLocation = new Vector3(0,0,0);
