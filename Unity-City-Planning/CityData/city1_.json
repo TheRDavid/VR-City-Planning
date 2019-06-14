@@ -5,7 +5,7 @@
     },
     "buildings": [
         {
-            "ID": "08a73150-e99e-4c87-94cd-a9b0f48dc63c",
+            "ID": "59c23739-aed3-496e-8ab2-5b4df1d68b0f",
             "population": 3,
             "consumption": 15,
             "size": {
@@ -20,7 +20,7 @@
             "Category": ""
         },
         {
-            "ID": "f1d699a9-0a2e-406e-86c9-e3fde15c77a0",
+            "ID": "318f8279-37e2-4bc8-b053-080626d9b5f1",
             "population": 0,
             "consumption": 2,
             "size": {
@@ -35,7 +35,7 @@
             "Category": ""
         },
         {
-            "ID": "afb39495-971c-4f94-8200-26b177ec3d32",
+            "ID": "b1b7a0c4-38c1-4d2f-a32d-a0826dcd2a61",
             "population": 4,
             "consumption": 2,
             "size": {
@@ -50,7 +50,7 @@
             "Category": ""
         },
         {
-            "ID": "813151a1-5417-462a-a19a-8ae00ace021f",
+            "ID": "330632ff-0bba-4706-af49-663eb6913169",
             "population": 3,
             "consumption": 5,
             "size": {
@@ -65,7 +65,7 @@
             "Category": ""
         },
         {
-            "ID": "ad8e9d7c-e72b-4e8a-84b1-cd64d1130756",
+            "ID": "4eaa72ac-1469-45bf-b7fc-c63da1bd5262",
             "population": 0,
             "consumption": 7,
             "size": {
@@ -80,7 +80,7 @@
             "Category": ""
         },
         {
-            "ID": "cd3aa72c-c068-422e-8670-8e18685faed8",
+            "ID": "54c60e5c-7196-40ef-a205-c079e3feeaf2",
             "population": 14,
             "consumption": 2,
             "size": {
@@ -97,7 +97,7 @@
     ],
     "roads": [
         {
-            "ID": "3bef03cb-ee62-49e6-8d3b-72bd3c12fa75",
+            "ID": "fce3f7b7-b362-446b-99eb-14a960226ec3",
             "start": {
                 "x": 3,
                 "y": 1
@@ -109,7 +109,7 @@
             "length": 6
         },
         {
-            "ID": "bb28ae9f-6a2b-42ca-b506-1feb0b4936ad",
+            "ID": "b848a8d2-fbc1-451b-bd71-8239e6245e8a",
             "start": {
                 "x": 1,
                 "y": 1

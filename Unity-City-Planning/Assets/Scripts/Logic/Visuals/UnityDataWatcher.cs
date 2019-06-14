@@ -20,6 +20,7 @@ public class UnityDataWatcher : MonoBehaviour, IDataWatcher
         this.conditionList = conditionList;
         this.municipality = municipality;
         this.municipality.updateSpaces();
+        Municipality.instance = municipality;
         refreshNeeded = true;
     }
 
@@ -29,6 +30,16 @@ public class UnityDataWatcher : MonoBehaviour, IDataWatcher
         buildingPrefab = Resources.Load("Prefabs/Building") as GameObject;
         roadPrefab = Resources.Load("Prefabs/Road") as GameObject;
         grassPrefab = Resources.Load("Prefabs/Grass") as GameObject;
+    }
+
+    void assignID(GameObject o, String ID)
+    {
+        o.name = ID;
+        o.transform.name = ID;
+        foreach(Transform child in o.transform)
+        {
+            assignID(child.gameObject, ID);
+        }
     }
 
     // Update is called once per frame
@@ -44,7 +55,7 @@ public class UnityDataWatcher : MonoBehaviour, IDataWatcher
 
             GameObject greenspace = Instantiate(grassPrefab, new Vector3(municipality.size.x / 2, (float)-0.0001, municipality.size.y / 2), Quaternion.identity);
             greenspace.transform.localScale += new Vector3(municipality.size.x, 0, municipality.size.y);
-
+            assignID(greenspace, "ground");
             var drawnBuildings = new List<Vector2Int>();
             foreach (Building b in municipality.buildings)
             {
@@ -66,8 +77,9 @@ public class UnityDataWatcher : MonoBehaviour, IDataWatcher
                         applyVisualization(c.visualizer, go);
                     }
                 }
-
+                
                 dataObjects.Add(go);
+                assignID(go, b.ID);
                 drawnBuildings.Add(b.Location);
 
 
@@ -135,6 +147,7 @@ public class UnityDataWatcher : MonoBehaviour, IDataWatcher
                 }
 
                 // add the new road to dataObjects
+                assignID(road, r.ID);
                 dataObjects.Add(road);
             }
 

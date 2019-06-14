@@ -8,6 +8,8 @@ using System;
 public class Municipality
 {
     [System.NonSerialized] public int streetSpace, buildingSpace, greenSpace;
+    public static Municipality instance;
+    [System.NonSerialized] private Road ground = new Road(Vector2Int.zero, Vector2Int.zero);
     public Vector2Int size;
     public List<Building> buildings;
     public List<Road> roads;
@@ -51,6 +53,8 @@ public class Municipality
 
     public Municipality(List<Building> buildings, List<Road> roads, Vector2Int size, double energyProd, int CO2)
     {
+        instance = this;
+        ground.ID = "ground";
         this.buildings = buildings;
         this.roads = roads;
         this.size = size;
@@ -78,6 +82,19 @@ public class Municipality
 
         streetSpace = space;
         updateGreenSpace();
+    }
+
+    public MapEntity entityByID(string ID)
+    {
+        foreach (Road r in roads)
+        {
+            if (r.ID.Equals(ID)) return r;
+        }
+        foreach (Building r in buildings)
+        {
+            if (r.ID.Equals(ID)) return r;
+        }
+        return null;
     }
 
     private void updateBuildingSpace()

@@ -130,6 +130,7 @@ namespace Valve.VR.Extras
             if (bHit && hit.distance < 100f)
             {
                 dist = hit.distance;
+                
             }
 
             if (bHit && interactWithUI.GetStateUp(pose.inputSource))
