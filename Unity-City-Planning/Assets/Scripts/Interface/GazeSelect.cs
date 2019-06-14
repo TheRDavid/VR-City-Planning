@@ -21,15 +21,34 @@ public class GazeSelect : MonoBehaviour
                 {
                     int quadX = (int)seen.point.x;
                     int quadZ = (int)seen.point.z;
-                    Debug.Log(quadX + "x" + quadZ);
                     quadrant = new Vector3Int(quadX, 0, quadZ);
+
+                    if (Input.GetKeyUp(KeyCode.Space))
+                    {
+                        switch(MenuSelect.instance.index)
+                        {
+                            case 1:
+                                // make a default building
+                                break;
+                            case 2:
+                                // make a business
+                                break;
+                            case 3:
+                                // factory
+                                break;
+                            case 4:
+                                // road
+                                break;
+                            default:
+                                break;
+                        }
+                    }
                 }
                 else
                 {
                     MapEntity selection = Municipality.instance.entityByID(seen.transform.name);
                     if (selection != null && !lastHitID.Equals(selection.ID))
                     {
-                        Debug.Log("Got a new hit: " + selection.GetType() + ", id: " + selection.ID);
                         lastHitID = selection.ID;
                         selectedObj = selection;
                     }
