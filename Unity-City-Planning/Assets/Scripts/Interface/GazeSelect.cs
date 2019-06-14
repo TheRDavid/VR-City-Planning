@@ -25,23 +25,26 @@ public class GazeSelect : MonoBehaviour
 
                     if (Input.GetKeyUp(KeyCode.Space))
                     {
-                        switch(MenuSelect.instance.index)
+                        MapEntity entity = null;
+                        switch (MenuSelect.instance.index)
                         {
                             case 1:
-                                // make a default building
+                                entity = new Building(10, 25, new Vector2Int(quadX, quadZ), Vector3Int.one, "Default");
                                 break;
                             case 2:
+                                entity = new Building(30, 0, new Vector2Int(quadX, quadZ), Vector3Int.one, "Business");
                                 // make a business
                                 break;
                             case 3:
-                                // factory
+                                entity = new Building(150, 0, new Vector2Int(quadX, quadZ), Vector3Int.one, "Industrial");
                                 break;
                             case 4:
-                                // road
+                                // todo
                                 break;
                             default:
                                 break;
                         }
+                        Municipality.InsertMapEntity(entity);
                     }
                 }
                 else

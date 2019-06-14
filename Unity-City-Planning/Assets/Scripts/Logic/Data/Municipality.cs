@@ -72,6 +72,22 @@ public class Municipality
         updateBuildingSpace();
     }
 
+    internal static void InsertMapEntity(MapEntity entity)
+    {
+        if (entity.GetType().Equals(typeof(Building)))
+        {
+            InsertBuilding(entity as Building);
+        }
+        else if (entity.GetType().Equals(typeof(Road)))
+        {
+            InsertRoad(entity as Road);
+        }
+        else
+        {
+            ErrorHandler.instance.reportError("Invalid Map Entity class");
+        }
+    }
+
     private void updateStreetSpace()
     {
         int space = 0;
