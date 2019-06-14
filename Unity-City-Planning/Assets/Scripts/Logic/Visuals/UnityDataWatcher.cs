@@ -60,7 +60,7 @@ public class UnityDataWatcher : MonoBehaviour, IDataWatcher
             GameObject greenspace = Instantiate(grassPrefab, new Vector3(municipality.size.x / 2, (float)-0.0001, municipality.size.y / 2), Quaternion.identity);
             greenspace.transform.localScale += new Vector3(municipality.size.x, 0, municipality.size.y);
             assignID(greenspace, "ground");
-            var drawnBuildings = new List<Vector2Int>();
+            var drawnBuildings = new List<Building>();
             foreach (Building b in municipality.buildings)
             {
                 // another building with the same coordinates exists
@@ -101,7 +101,7 @@ public class UnityDataWatcher : MonoBehaviour, IDataWatcher
                 
                 dataObjects.Add(go);
                 assignID(go, b.ID);
-                drawnBuildings.Add(b.Location);
+                drawnBuildings.Add(b);
 
 
             }

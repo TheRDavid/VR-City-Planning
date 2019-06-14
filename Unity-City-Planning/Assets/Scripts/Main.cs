@@ -22,12 +22,12 @@ public class Main : MonoBehaviour
         {
             List<Building> buildings = new List<Building>(
                 new Building[]{
-                new Building(15,3, new Vector2Int(2,4), Vector3Int.one),
-                new Building(2,0,  new Vector2Int(2,5), Vector3Int.one),
-                new Building(2,4,  new Vector2Int(2,6), Vector3Int.one),
-                new Building(5,3, new Vector2Int(4,4), Vector3Int.one),
-                new Building(7,0,  new Vector2Int(4,5), Vector3Int.one),
-                new Building(2,14,  new Vector2Int(4,6), Vector3Int.one)
+                new Building(15,3, new Vector2Int(2,4), Vector3Int.one, "Business"),
+                new Building(2,0,  new Vector2Int(2,5), Vector3Int.one, "Business"),
+                new Building(2,4,  new Vector2Int(2,6), Vector3Int.one, "Default"),
+                new Building(5,3, new Vector2Int(4,4), Vector3Int.one, "Default"),
+                new Building(7,0,  new Vector2Int(4,5), Vector3Int.one, "Industrial"),
+                new Building(2,14,  new Vector2Int(4,6), Vector3Int.one, "Default")
             });
 
             List<Road> roads = new List<Road>(

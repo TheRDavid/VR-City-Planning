@@ -5,7 +5,7 @@
     },
     "buildings": [
         {
-            "ID": "08a73150-e99e-4c87-94cd-a9b0f48dc63c",
+            "ID": "295d4919-02a7-4e6e-9c7e-42f9f85c82d5",
             "population": 3,
             "consumption": 15,
             "size": {
@@ -17,57 +17,12 @@
                 "x": 2,
                 "y": 4
             },
-            "Category": ""
+            "Category": "Business"
         },
         {
-            "ID": "f1d699a9-0a2e-406e-86c9-e3fde15c77a0",
+            "ID": "7517489f-b43a-4ac4-af60-09c81c1bde08",
             "population": 0,
             "consumption": 2,
-            "size": {
-                "x": 1,
-                "y": 1,
-                "z": 1
-            },
-            "location": {
-                "x": -2,
-                "y": -2
-            },
-            "Category": "Industrial"
-        },
-        {
-            "ID": "6a7d328a-5ef7-4a5f-a04f-08c614a3e3f9",
-            "population": 10,
-            "consumption": 10,
-            "size": {
-                "x": 1,
-                "y": 1,
-                "z": 1
-            },
-            "location": {
-                "x": 10,
-                "y": 10
-            },
-            "Category": "Default"
-        },
-        {
-            "ID": "291d2f5d-4d61-41c8-8b0d-dfe0e53e89c7",
-            "population": 6,
-            "consumption": 6,
-            "size": {
-                "x": 1,
-                "y": 1,
-                "z": 1
-            },
-            "location": {
-                "x": 6,
-                "y": 6
-            },
-            "Category": "Default"
-        },
-        {
-            "ID": "2bae1b9a-0829-4858-9c9d-c8347d456daa",
-            "population": 20,
-            "consumption": 0,
             "size": {
                 "x": 1,
                 "y": 1,
@@ -77,10 +32,10 @@
                 "x": 2,
                 "y": 5
             },
-            "Category": ""
+            "Category": "Business"
         },
         {
-            "ID": "afb39495-971c-4f94-8200-26b177ec3d32",
+            "ID": "97973486-deec-43e9-b60d-e663e97237a7",
             "population": 4,
             "consumption": 2,
             "size": {
@@ -92,10 +47,10 @@
                 "x": 2,
                 "y": 6
             },
-            "Category": ""
+            "Category": "Default"
         },
         {
-            "ID": "813151a1-5417-462a-a19a-8ae00ace021f",
+            "ID": "372b309d-62dc-44f0-a74c-9e51ba2f39b2",
             "population": 3,
             "consumption": 5,
             "size": {
@@ -107,10 +62,10 @@
                 "x": 4,
                 "y": 4
             },
-            "Category": ""
+            "Category": "Default"
         },
         {
-            "ID": "ad8e9d7c-e72b-4e8a-84b1-cd64d1130756",
+            "ID": "91ff96fa-8645-4da7-8b9b-a6996c0f70df",
             "population": 0,
             "consumption": 7,
             "size": {
@@ -122,10 +77,10 @@
                 "x": 4,
                 "y": 5
             },
-            "Category": ""
+            "Category": "Industrial"
         },
         {
-            "ID": "cd3aa72c-c068-422e-8670-8e18685faed8",
+            "ID": "9dd97197-5e98-4d68-909d-e2332883c544",
             "population": 14,
             "consumption": 2,
             "size": {
@@ -137,12 +92,12 @@
                 "x": 4,
                 "y": 6
             },
-            "Category": ""
+            "Category": "Default"
         }
     ],
     "roads": [
         {
-            "ID": "3bef03cb-ee62-49e6-8d3b-72bd3c12fa75",
+            "ID": "046cc201-6be9-4866-bc50-441cd19f8a04",
             "start": {
                 "x": 3,
                 "y": 1
@@ -154,7 +109,7 @@
             "length": 6
         },
         {
-            "ID": "bb28ae9f-6a2b-42ca-b506-1feb0b4936ad",
+            "ID": "7368fead-311d-47c1-9738-e562c82c8f69",
             "start": {
                 "x": 1,
                 "y": 1

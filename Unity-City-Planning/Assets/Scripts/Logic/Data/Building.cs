@@ -63,4 +63,22 @@ public class Building : MapEntity
     public double distance(Building other){
         return Vector2Int.Distance(this.location, other.location);
     }
+
+    internal bool collisionWithBuildings(List<Building> buildings)
+    {
+        foreach(Building b in buildings)
+        {
+            if (location.Equals(b.Location)) return true;
+        }
+        return false;
+    }
+
+    internal bool collisionWithRoads(List<Road> roads)
+    {
+        foreach(Road r in roads)
+        {
+            if (collide(this, r)) return true;
+        }
+        return false;
+    }
 }
