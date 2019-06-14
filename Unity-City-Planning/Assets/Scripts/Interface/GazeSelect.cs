@@ -5,8 +5,9 @@ using UnityEngine;
 public class GazeSelect : MonoBehaviour
 {
     public float sightlength = 100.0f;
-    public GameObject selectedObj;
+    public MapEntity selectedObj;
     string lastHitID = "";
+    public Vector3Int quadrant;
 
     void FixedUpdate()
     {
@@ -21,6 +22,7 @@ public class GazeSelect : MonoBehaviour
                     int quadX = (int)seen.point.x;
                     int quadZ = (int)seen.point.z;
                     Debug.Log(quadX + "x" + quadZ);
+                    quadrant = new Vector3Int(quadX, 0, quadZ);
                 }
                 else
                 {
@@ -29,10 +31,15 @@ public class GazeSelect : MonoBehaviour
                     {
                         Debug.Log("Got a new hit: " + selection.GetType() + ", id: " + selection.ID);
                         lastHitID = selection.ID;
+                        selectedObj = selection;
                     }
                 }
             }
-            else lastHitID = "";
+            else
+            {
+                lastHitID = "";
+                selectedObj = null;
+            }
         }
     }
 }
