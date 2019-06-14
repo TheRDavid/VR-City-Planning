@@ -35,6 +35,7 @@ public class Pointer : MonoBehaviour
         if(hit.collider != null)
         {
             endPosition = hit.point;
+            Debug.Log("raycat hit");
         }
 
         // set position of the dot
