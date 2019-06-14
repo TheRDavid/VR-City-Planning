@@ -159,6 +159,83 @@ public class Municipality
 
         natureAccess = greenSpace / totalPopulation;
     }
+    public static void InsertRoad(Road newRoad)
+    {
+        string dataPath = "CityData/city1.json";
+        //read the entire JSON file
+        FileStream readStream = File.Open(dataPath, FileMode.Open);
+        StreamReader reader = new StreamReader(readStream);
+        reader.BaseStream.Seek(0, SeekOrigin.Begin);
 
+        string jsonData = reader.ReadToEnd();
+        readStream.Close();
+
+        Municipality municipality;
+
+        try
+        {
+            municipality = JsonUtility.FromJson<Municipality>(jsonData);
+        }
+        catch (Exception ae)
+        {
+            ErrorHandler.instance.reportError("Data file " + readStream.Name + " can not be read as Municipality -> it appears to be corrupt.\nDetails:\n" + ae.ToString());
+
+            return;
+        }
+
+        //if there are collisions, the road should not be added to the JSON file
+        if (newRoad.collisionWithBuildings(municipality.buildings))
+        {
+            ErrorHandler.instance.reportError("This road crosses a building! Please choose different start and end points.");
+        }
+        else
+        {
+            municipality.roads.Add(newRoad);
+
+            StreamWriter writer = new StreamWriter(dataPath, false);
+            writer.WriteLine(JsonUtility.ToJson(municipality, true));
+            writer.Close();
+        }
+    }
+
+    public static void InsertBuilding(Building newBuilding)
+    {
+
+        string dataPath = "CityData/city1.json";
+
+        //read the entire JSON file
+        FileStream readStream = File.Open(dataPath, FileMode.Open);
+        StreamReader reader = new StreamReader(readStream);
+        reader.BaseStream.Seek(0, SeekOrigin.Begin);
+
+        string jsonData = reader.ReadToEnd();
+        readStream.Close();
+
+        Municipality municipality;
+
+        try
+        {
+            municipality = JsonUtility.FromJson<Municipality>(jsonData);
+        }
+        catch (Exception ae)
+        {
+            ErrorHandler.instance.reportError("Data file " + readStream.Name + " can not be read as Municipality -> it appears to be corrupt.\nDetails:\n" + ae.ToString());
+            return;
+        }
+
+        //if there are collisions, the building should not be added to the JSON file
+        if (newBuilding.collisionWithBuildings(municipality.buildings) || newBuilding.collisionWithRoads(municipality.roads))
+        {
+            ErrorHandler.instance.reportError("An entity already exists at this location" + newBuilding.location.ToString());
+        }
+        else
+        {
+            municipality.buildings.Add(newBuilding);
+
+            StreamWriter writer = new StreamWriter(dataPath, false);
+            writer.WriteLine(JsonUtility.ToJson(municipality, true));
+            writer.Close();
+        }
+    }
 
 }
