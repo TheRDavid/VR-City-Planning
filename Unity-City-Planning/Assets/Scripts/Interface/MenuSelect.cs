@@ -66,6 +66,5 @@ public class MenuSelect : MonoBehaviour
             catch
         {
         }
-        Debug.Log(index);
     }
 }

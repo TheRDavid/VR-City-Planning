@@ -125,19 +125,79 @@
             "Category": "Business"
         },
         {
-            "ID": "ee9bfa98-5fed-4a6e-a686-f8115bbe7543",
-            "population": 0,
-            "consumption": 150,
+            "ID": "5fb59b84-f57e-4d8c-b6cb-79b167c36b0e",
+            "population": 25,
+            "consumption": 10,
             "size": {
                 "x": 1,
                 "y": 1,
                 "z": 1
             },
             "location": {
+                "x": 6,
+                "y": 2
+            },
+            "Category": "Default"
+        },
+        {
+            "ID": "7919f9cf-df67-418d-b46c-59fa1151acf2",
+            "population": 0,
+            "consumption": 30,
+            "size": {
                 "x": 1,
+                "y": 1,
+                "z": 1
+            },
+            "location": {
+                "x": 8,
+                "y": 4
+            },
+            "Category": "Business"
+        },
+        {
+            "ID": "f6e1d152-98f7-43f8-900c-7d3b4a85275c",
+            "population": 0,
+            "consumption": 30,
+            "size": {
+                "x": 1,
+                "y": 1,
+                "z": 1
+            },
+            "location": {
+                "x": 5,
                 "y": 0
             },
-            "Category": "Industrial"
+            "Category": "Business"
+        },
+        {
+            "ID": "43bb30f5-23cd-4eb9-bb13-643d712b0f8e",
+            "population": 0,
+            "consumption": 30,
+            "size": {
+                "x": 1,
+                "y": 1,
+                "z": 1
+            },
+            "location": {
+                "x": 4,
+                "y": 0
+            },
+            "Category": "Business"
+        },
+        {
+            "ID": "0897efa7-a700-4256-b7d7-23107872cba3",
+            "population": 25,
+            "consumption": 10,
+            "size": {
+                "x": 1,
+                "y": 1,
+                "z": 1
+            },
+            "location": {
+                "x": 3,
+                "y": 0
+            },
+            "Category": "Default"
         }
     ],
     "roads": [

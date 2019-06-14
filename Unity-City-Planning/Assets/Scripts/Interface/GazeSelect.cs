@@ -8,6 +8,13 @@ public class GazeSelect : MonoBehaviour
     public MapEntity selectedObj;
     string lastHitID = "";
     public Vector3Int quadrant;
+    private Vector3 bannedPosition = new Vector3(0, -10, 0);
+    private GameObject selectionCube;
+
+    private void Start()
+    {
+        selectionCube = GameObject.Find("SelectionCube");    
+    }
 
     void FixedUpdate()
     {
@@ -17,12 +24,15 @@ public class GazeSelect : MonoBehaviour
         {
             if (seen.transform.gameObject != null)
             {
+                int quadX = (int)seen.point.x;
+                int quadZ = (int)seen.point.z;
+                quadrant = new Vector3Int(quadX, 0, quadZ);
+
+                selectionCube.transform.position = quadrant;
+                Debug.Log(quadrant);
+
                 if (seen.transform.name.Equals("ground"))
                 {
-                    int quadX = (int)seen.point.x;
-                    int quadZ = (int)seen.point.z;
-                    quadrant = new Vector3Int(quadX, 0, quadZ);
-
                     if (Input.GetKeyUp(KeyCode.Space))
                     {
                         MapEntity entity = null;
@@ -50,6 +60,13 @@ public class GazeSelect : MonoBehaviour
                 else
                 {
                     MapEntity selection = Municipality.instance.entityByID(seen.transform.name);
+                    if (typeof(Building).Equals(selection.GetType()))
+                    {
+                        quadX = (int)seen.transform.position.x;
+                        quadZ = (int)seen.transform.position.z;
+                        quadrant = new Vector3Int(quadX, 0, quadZ);
+                        selectionCube.transform.position = quadrant;
+                    }
                     if (selection != null && !lastHitID.Equals(selection.ID))
                     {
                         lastHitID = selection.ID;
