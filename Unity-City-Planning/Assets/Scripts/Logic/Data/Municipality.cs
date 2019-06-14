@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Runtime.Serialization;
 using System;
+using System.IO;
 
 [Serializable]
 public class Municipality
@@ -101,7 +102,7 @@ public class Municipality
     {
         int space = 0;
 
-        foreach(Building b in buildings)
+        foreach (Building b in buildings)
         {
             space += b.Size.x * b.Size.y;
         }

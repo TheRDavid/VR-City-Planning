@@ -30,13 +30,12 @@ public class Main : MonoBehaviour
                 new Building(2,14,  new Vector2Int(4,6), Vector3Int.one)
             });
 
-
             List<Road> roads = new List<Road>(
                 new Road[]{
                 new Road(new Vector2Int(3,1), new Vector2Int(3,7)),
                 new Road(new Vector2Int(1,1), new Vector2Int(1,6))
             });
-            
+
             StreamWriter writer = new StreamWriter(dataPath, false);
             writer.WriteLine(JsonUtility.ToJson(
                 new Municipality(buildings, roads, new Vector2Int(10,10), 0.5, 200), 

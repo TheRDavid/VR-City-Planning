@@ -29,6 +29,51 @@
                 "z": 1
             },
             "location": {
+                "x": -2,
+                "y": -2
+            },
+            "Category": "Industrial"
+        },
+        {
+            "ID": "6a7d328a-5ef7-4a5f-a04f-08c614a3e3f9",
+            "population": 10,
+            "consumption": 10,
+            "size": {
+                "x": 1,
+                "y": 1,
+                "z": 1
+            },
+            "location": {
+                "x": 10,
+                "y": 10
+            },
+            "Category": "Default"
+        },
+        {
+            "ID": "291d2f5d-4d61-41c8-8b0d-dfe0e53e89c7",
+            "population": 6,
+            "consumption": 6,
+            "size": {
+                "x": 1,
+                "y": 1,
+                "z": 1
+            },
+            "location": {
+                "x": 6,
+                "y": 6
+            },
+            "Category": "Default"
+        },
+        {
+            "ID": "2bae1b9a-0829-4858-9c9d-c8347d456daa",
+            "population": 20,
+            "consumption": 0,
+            "size": {
+                "x": 1,
+                "y": 1,
+                "z": 1
+            },
+            "location": {
                 "x": 2,
                 "y": 5
             },

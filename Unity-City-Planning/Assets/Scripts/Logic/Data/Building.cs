@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 using UnityEngine;
+using System.Linq;
 
 [Serializable]
 public class Building : MapEntity
@@ -35,12 +36,22 @@ public class Building : MapEntity
     }
     public int buildingScore { get; private set; }
 
-    public Building(int consumption, int population, Vector2Int location, Vector3Int size)
+    public Building(int consumption, int population, Vector2Int location, Vector3Int size, string cat)
     {
         this.Consumption = consumption;
         this.Population = population;
         this.Location = location;
         this.Size = size;
+
+        if (BuildingCategories.Contains(cat))
+        {
+            this.Category = cat;
+        }
+        else
+        {
+            Debug.Log("Invalid building category entered");
+        }
+
         updateScore();
     }
 
