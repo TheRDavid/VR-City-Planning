@@ -25,14 +25,6 @@ namespace Valve.VR
             }
         }
         
-        public virtual SteamVR_Action_Boolean Grab
-        {
-            get
-            {
-                return SteamVR_Actions.default_Grab;
-            }
-        }
-        
         public virtual SteamVR_Action_Skeleton SkeletonLeftHand
         {
             get
@@ -54,6 +46,46 @@ namespace Valve.VR
             get
             {
                 return SteamVR_Actions.default_HeadsetOnHead;
+            }
+        }
+        
+        public virtual SteamVR_Action_Boolean touchpad
+        {
+            get
+            {
+                return SteamVR_Actions.default_touchpad;
+            }
+        }
+        
+        public virtual SteamVR_Action_Vector2 touchPos
+        {
+            get
+            {
+                return SteamVR_Actions.default_touchPos;
+            }
+        }
+        
+        public virtual SteamVR_Action_Boolean MenuButton
+        {
+            get
+            {
+                return SteamVR_Actions.default_MenuButton;
+            }
+        }
+        
+        public virtual SteamVR_Action_Boolean trigger_pull
+        {
+            get
+            {
+                return SteamVR_Actions.default_trigger_pull;
+            }
+        }
+        
+        public virtual SteamVR_Action_Pose controller_pose
+        {
+            get
+            {
+                return SteamVR_Actions.default_controller_pose;
             }
         }
         

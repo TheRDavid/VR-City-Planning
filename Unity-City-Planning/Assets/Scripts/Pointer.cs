@@ -17,7 +17,7 @@ public class Pointer : MonoBehaviour
 
     private void Update()
     {
-        UpdateLine()
+        UpdateLine();
     }
 
     private void UpdateLine()

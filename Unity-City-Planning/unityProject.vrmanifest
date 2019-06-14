@@ -5,7 +5,7 @@
       "app_key": "application.generated.unity.unitycityplanning.exe",
       "launch_type": "url",
       "url": "steam://launch/",
-      "action_manifest_path": "C:\\Users\\vrsilab\\Desktop\\TestGroup\\VR-City-Planning\\Unity-City-Planning\\actions.json",
+      "action_manifest_path": "C:\\Users\\vrsilab\\Desktop\\pg8\\VR-City-Planning\\Unity-City-Planning\\actions.json",
       "strings": {
         "en_us": {
           "name": "Unity-City-Planning [Testing]"
