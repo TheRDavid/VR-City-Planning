@@ -60,6 +60,21 @@ public class GazeSelect : MonoBehaviour
                 else
                 {
                     MapEntity selection = Municipality.instance.entityByID(seen.transform.name);
+
+                    if (Input.GetKeyUp(KeyCode.Space))
+                    {
+                        if (typeof(Building).Equals(selection.GetType()))
+                        {
+                            Building b = selection as Building;
+                            ErrorHandler.instance.reportError("Population: " + b.Population);
+                        }
+                        else if(typeof(Road).Equals(selection.GetType()))
+                        {
+                            Road b = selection as Road;
+                            ErrorHandler.instance.reportError("Length: " + b.Length);
+                        }
+                    }
+
                     if (typeof(Building).Equals(selection.GetType()))
                     {
                         quadX = (int)seen.transform.position.x;
