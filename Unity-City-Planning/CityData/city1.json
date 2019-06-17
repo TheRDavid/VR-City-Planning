@@ -5,21 +5,6 @@
     },
     "buildings": [
         {
-            "ID": "295d4919-02a7-4e6e-9c7e-42f9f85c82d5",
-            "population": 3,
-            "consumption": 15,
-            "size": {
-                "x": 1,
-                "y": 1,
-                "z": 1
-            },
-            "location": {
-                "x": 2,
-                "y": 4
-            },
-            "Category": "Business"
-        },
-        {
             "ID": "7517489f-b43a-4ac4-af60-09c81c1bde08",
             "population": 0,
             "consumption": 2,
@@ -46,21 +31,6 @@
             "location": {
                 "x": 2,
                 "y": 6
-            },
-            "Category": "Default"
-        },
-        {
-            "ID": "372b309d-62dc-44f0-a74c-9e51ba2f39b2",
-            "population": 3,
-            "consumption": 5,
-            "size": {
-                "x": 1,
-                "y": 1,
-                "z": 1
-            },
-            "location": {
-                "x": 4,
-                "y": 4
             },
             "Category": "Default"
         },
@@ -185,21 +155,6 @@
             "Category": "Business"
         },
         {
-            "ID": "0897efa7-a700-4256-b7d7-23107872cba3",
-            "population": 25,
-            "consumption": 10,
-            "size": {
-                "x": 1,
-                "y": 1,
-                "z": 1
-            },
-            "location": {
-                "x": 3,
-                "y": 0
-            },
-            "Category": "Default"
-        },
-        {
             "ID": "389a30ba-7b52-416a-a94d-2332f5549fb4",
             "population": 0,
             "consumption": 150,
@@ -228,36 +183,6 @@
                 "y": 2
             },
             "Category": "Business"
-        },
-        {
-            "ID": "fbd17b2a-2da5-40a6-b234-5464d23884d6",
-            "population": 25,
-            "consumption": 10,
-            "size": {
-                "x": 1,
-                "y": 1,
-                "z": 1
-            },
-            "location": {
-                "x": 2,
-                "y": 2
-            },
-            "Category": "Default"
-        },
-        {
-            "ID": "33d9ccaf-76b5-4236-8190-ce39464f8028",
-            "population": 25,
-            "consumption": 10,
-            "size": {
-                "x": 1,
-                "y": 1,
-                "z": 1
-            },
-            "location": {
-                "x": 4,
-                "y": 1
-            },
-            "Category": "Default"
         }
     ],
     "roads": [

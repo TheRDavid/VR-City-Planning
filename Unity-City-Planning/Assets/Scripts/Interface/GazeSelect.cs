@@ -32,6 +32,8 @@ public class GazeSelect : MonoBehaviour
 
                 selectionCube.transform.position = quadrant;
 
+                if (!MenuSelect.instance.isActiveAndEnabled) return;
+
                 if (seen.transform.name.Equals("ground"))
                 {
                     if (Input.GetKeyUp(KeyCode.Space))
@@ -61,6 +63,8 @@ public class GazeSelect : MonoBehaviour
                 else
                 {
                     MapEntity selection = Municipality.instance.entityByID(seen.transform.name);
+
+                    if (selection == null) return;
 
                     if (typeof(Building).Equals(selection.GetType()))
                     {

@@ -11,12 +11,14 @@ public class EditBuilding : MonoBehaviour
     private Dropdown catergoryDropDown;
     private Button deleteButton;
     private Button duplicateButton;
-    private Text positionText;
+    private Text positionText, populationText, consumptionText;
     public int index = 0;
     private bool changed = false;
     List<Selectable> components = new List<Selectable>();
     private Selectable lastSelected = null;
     float bump = 1.2f;
+
+    Building editable = null;
 
     List<string> cats = new List<string>()
         {"Default", "Business", "Industrial" };
@@ -28,7 +30,10 @@ public class EditBuilding : MonoBehaviour
     {
         instance = this;
         nameField = gameObject.transform.Find("Name").GetComponent<InputField>();
+        nameField.readOnly = true;
+        populationText = gameObject.transform.Find("_Text_Population").GetComponent<Text>();
         populationSlider = gameObject.transform.Find("Population").GetComponent<Slider>();
+        consumptionText = gameObject.transform.Find("_Text_Consumption").GetComponent<Text>();
         consumptionSlider = gameObject.transform.Find("Consumption").GetComponent<Slider>();
         positionText = gameObject.transform.Find("Position").GetComponent<Text>();
         catergoryDropDown = gameObject.transform.Find("Category").GetComponent<Dropdown>();
@@ -47,8 +52,10 @@ public class EditBuilding : MonoBehaviour
     }
 
     private void DeleteClicked()
-    {
+    {   
         Municipality.deleteMapEntity(GazeSelect.instance.selectedObj);
+        GazeSelect.instance.selectedObj = null;
+        Hide();
     }
 
     public void Hide()
@@ -59,10 +66,13 @@ public class EditBuilding : MonoBehaviour
 
     public void Show(Building entity)
     {
+        editable = entity;
         MenuSelect.instance.Hide();
         gameObject.SetActive(true);
         nameField.text = entity.ID;
+        populationText.text = "Population: " + entity.Population;
         populationSlider.value = entity.Population;
+        consumptionText.text = "Consumption: " + entity.Consumption;
         consumptionSlider.value = entity.Consumption;
         positionText.text = "Position: " + entity.location.x + " x " + entity.location.y;
         catergoryDropDown.value = cats.IndexOf(entity.Category);
@@ -85,8 +95,33 @@ public class EditBuilding : MonoBehaviour
             index--;
             if (index < 0) index = components.Count - 1;
         }
+        if (Input.GetKeyUp(KeyCode.RightArrow))
+        {
+            if (index==1)
+            {
+                populationText.text = "Population: " + populationSlider.value;
+            }
+            if (index == 2)
+            {
+                consumptionText.text = "Consumption: " + consumptionSlider.value;
+            }
+        }
+        if (Input.GetKeyUp(KeyCode.LeftArrow))
+        {
+            if (index == 1)
+            {
+                populationText.text = "Population: " + populationSlider.value;
+            }
+            if (index == 2)
+            {
+                consumptionText.text = "Consumption: " + consumptionSlider.value;
+            }
+        }
         if (Input.GetKeyUp(KeyCode.Escape))
         {
+            editable.consumption = (int)consumptionSlider.value;
+            editable.population = (int)populationSlider.value;
+            index = 0;
             Hide();
         }
 

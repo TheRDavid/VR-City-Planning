@@ -282,22 +282,11 @@ public class Municipality
 
         string jsonData = reader.ReadToEnd();
         readStream.Close();
-
-        Municipality municipality;
-
-        try
-        {
-            municipality = JsonUtility.FromJson<Municipality>(jsonData);
-        }
-        catch (Exception ae)
-        {
-            ErrorHandler.instance.reportError("Data file " + readStream.Name + " can not be read as Municipality -> it appears to be corrupt.\nDetails:\n" + ae.ToString());
-            return;
-        }
-        municipality.buildings.Remove(newBuilding);
+        
+        Municipality.instance.buildings.Remove(newBuilding);
 
         StreamWriter writer = new StreamWriter(dataPath, false);
-        writer.WriteLine(JsonUtility.ToJson(municipality, true));
+        writer.WriteLine(JsonUtility.ToJson(Municipality.instance, true));
         writer.Close();
     }
 
