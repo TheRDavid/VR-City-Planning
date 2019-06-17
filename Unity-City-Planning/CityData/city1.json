@@ -198,6 +198,51 @@
                 "y": 0
             },
             "Category": "Default"
+        },
+        {
+            "ID": "389a30ba-7b52-416a-a94d-2332f5549fb4",
+            "population": 0,
+            "consumption": 150,
+            "size": {
+                "x": 1,
+                "y": 1,
+                "z": 1
+            },
+            "location": {
+                "x": 7,
+                "y": 5
+            },
+            "Category": "Industrial"
+        },
+        {
+            "ID": "337de2ba-319a-4ce6-98b0-19e384f00a8e",
+            "population": 0,
+            "consumption": 30,
+            "size": {
+                "x": 1,
+                "y": 1,
+                "z": 1
+            },
+            "location": {
+                "x": 4,
+                "y": 2
+            },
+            "Category": "Business"
+        },
+        {
+            "ID": "fbd17b2a-2da5-40a6-b234-5464d23884d6",
+            "population": 25,
+            "consumption": 10,
+            "size": {
+                "x": 1,
+                "y": 1,
+                "z": 1
+            },
+            "location": {
+                "x": 2,
+                "y": 2
+            },
+            "Category": "Default"
         }
     ],
     "roads": [
