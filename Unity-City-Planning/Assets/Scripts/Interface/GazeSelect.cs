@@ -10,9 +10,11 @@ public class GazeSelect : MonoBehaviour
     public Vector3Int quadrant;
     private Vector3 bannedPosition = new Vector3(0, -10, 0);
     private GameObject selectionCube;
+    public static GazeSelect instance;
 
     private void Start()
     {
+        instance = this;
         selectionCube = GameObject.Find("SelectionCube");    
     }
 
@@ -29,7 +31,6 @@ public class GazeSelect : MonoBehaviour
                 quadrant = new Vector3Int(quadX, 0, quadZ);
 
                 selectionCube.transform.position = quadrant;
-                Debug.Log(quadrant);
 
                 if (seen.transform.name.Equals("ground"))
                 {
@@ -61,20 +62,6 @@ public class GazeSelect : MonoBehaviour
                 {
                     MapEntity selection = Municipality.instance.entityByID(seen.transform.name);
 
-                    if (Input.GetKeyUp(KeyCode.Space))
-                    {
-                        if (typeof(Building).Equals(selection.GetType()))
-                        {
-                            Building b = selection as Building;
-                            ErrorHandler.instance.reportError("Population: " + b.Population);
-                        }
-                        else if(typeof(Road).Equals(selection.GetType()))
-                        {
-                            Road b = selection as Road;
-                            ErrorHandler.instance.reportError("Length: " + b.Length);
-                        }
-                    }
-
                     if (typeof(Building).Equals(selection.GetType()))
                     {
                         quadX = (int)seen.transform.position.x;
@@ -86,6 +73,19 @@ public class GazeSelect : MonoBehaviour
                     {
                         lastHitID = selection.ID;
                         selectedObj = selection;
+                    }
+
+                    if (Input.GetKeyUp(KeyCode.Space))
+                    {
+                        if (typeof(Building).Equals(selection.GetType()))
+                        {
+                            Building b = selection as Building;
+                            EditBuilding.instance.Show(b);
+                        }
+                        else if (typeof(Road).Equals(selection.GetType()))
+                        {
+                            Road b = selection as Road;
+                        }
                     }
                 }
             }

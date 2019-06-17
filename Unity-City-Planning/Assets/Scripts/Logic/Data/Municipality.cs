@@ -72,6 +72,22 @@ public class Municipality
         updateBuildingSpace();
     }
 
+    internal static void deleteMapEntity(MapEntity entity)
+    {
+        if (entity.GetType().Equals(typeof(Building)))
+        {
+            DeleteBuilding(entity as Building);
+        }
+        else if (entity.GetType().Equals(typeof(Road)))
+        {
+            DeleteRoad(entity as Road);
+        }
+        else
+        {
+            ErrorHandler.instance.reportError("Invalid Map Entity class");
+        }
+    }
+
     internal static void InsertMapEntity(MapEntity entity)
     {
         if (entity.GetType().Equals(typeof(Building)))
@@ -252,6 +268,68 @@ public class Municipality
             writer.WriteLine(JsonUtility.ToJson(municipality, true));
             writer.Close();
         }
+    }
+
+    public static void DeleteBuilding(Building newBuilding)
+    {
+
+        string dataPath = "CityData/city1.json";
+
+        //read the entire JSON file
+        FileStream readStream = File.Open(dataPath, FileMode.Open);
+        StreamReader reader = new StreamReader(readStream);
+        reader.BaseStream.Seek(0, SeekOrigin.Begin);
+
+        string jsonData = reader.ReadToEnd();
+        readStream.Close();
+
+        Municipality municipality;
+
+        try
+        {
+            municipality = JsonUtility.FromJson<Municipality>(jsonData);
+        }
+        catch (Exception ae)
+        {
+            ErrorHandler.instance.reportError("Data file " + readStream.Name + " can not be read as Municipality -> it appears to be corrupt.\nDetails:\n" + ae.ToString());
+            return;
+        }
+        municipality.buildings.Remove(newBuilding);
+
+        StreamWriter writer = new StreamWriter(dataPath, false);
+        writer.WriteLine(JsonUtility.ToJson(municipality, true));
+        writer.Close();
+    }
+
+    public static void DeleteRoad(Road newRoad)
+    {
+
+        string dataPath = "CityData/city1.json";
+
+        //read the entire JSON file
+        FileStream readStream = File.Open(dataPath, FileMode.Open);
+        StreamReader reader = new StreamReader(readStream);
+        reader.BaseStream.Seek(0, SeekOrigin.Begin);
+
+        string jsonData = reader.ReadToEnd();
+        readStream.Close();
+
+        Municipality municipality;
+
+        try
+        {
+            municipality = JsonUtility.FromJson<Municipality>(jsonData);
+        }
+        catch (Exception ae)
+        {
+            ErrorHandler.instance.reportError("Data file " + readStream.Name + " can not be read as Municipality -> it appears to be corrupt.\nDetails:\n" + ae.ToString());
+            return;
+        }
+        municipality.roads.Remove(newRoad);
+
+        StreamWriter writer = new StreamWriter(dataPath, false);
+        writer.WriteLine(JsonUtility.ToJson(municipality, true));
+        writer.Close();
     }
 
 }

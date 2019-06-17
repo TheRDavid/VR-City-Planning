@@ -243,6 +243,21 @@
                 "y": 2
             },
             "Category": "Default"
+        },
+        {
+            "ID": "33d9ccaf-76b5-4236-8190-ce39464f8028",
+            "population": 25,
+            "consumption": 10,
+            "size": {
+                "x": 1,
+                "y": 1,
+                "z": 1
+            },
+            "location": {
+                "x": 4,
+                "y": 1
+            },
+            "Category": "Default"
         }
     ],
     "roads": [

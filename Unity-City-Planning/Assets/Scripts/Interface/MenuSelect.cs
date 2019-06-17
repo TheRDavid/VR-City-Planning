@@ -18,7 +18,8 @@ public class MenuSelect : MonoBehaviour
 
     float bump = 1.2f;
     bool changed = false;
-    void Start()
+
+    void Awake()
     {
         instance = this;
         foreach(Transform t in transform)
@@ -28,10 +29,18 @@ public class MenuSelect : MonoBehaviour
                 buttons.Add(t.gameObject.GetComponent<Button>());
             }
         }
-        buttons[index].Select();
+        buttons[index].Select();                  
     }
 
-    
+    public void Hide()
+    {
+        gameObject.SetActive(false);
+    }
+
+    public void Show()
+    {
+        gameObject.SetActive(true);
+    }
 
     // Update is called once per frame
     void Update()
