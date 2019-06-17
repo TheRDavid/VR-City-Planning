@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -68,6 +69,20 @@ public class EditBuilding : MonoBehaviour
         if (GazeSelect.instance.selectedGameObject != null) Destroy(GazeSelect.instance.selectedGameObject.GetComponent<USizePulser>());
         gameObject.SetActive(false);
         MenuSelect.instance.Show();
+
+        string dataPath = "CityData/city1.json";
+        //read the entire JSON file
+        FileStream readStream = File.Open(dataPath, FileMode.Open);
+        StreamReader reader = new StreamReader(readStream);
+        reader.BaseStream.Seek(0, SeekOrigin.Begin);
+
+        string jsonData = reader.ReadToEnd();
+        readStream.Close();
+        
+
+            StreamWriter writer = new StreamWriter(dataPath, false);
+            writer.WriteLine(JsonUtility.ToJson(Municipality.instance, true));
+            writer.Close();
     }
 
     public void Show(Building entity)
@@ -91,7 +106,7 @@ public class EditBuilding : MonoBehaviour
 
 
         USizePulser usp = GazeSelect.instance.selectedGameObject.AddComponent<USizePulser>();
-        usp.setScalingAttributes(new Visualizer.SizePulser(1, 1.5f, 1, 1).floatParams);
+        usp.setScalingAttributes(new Visualizer.SizePulser(1, 1.3f, 1, 0.75f).floatParams);
 
     }
 

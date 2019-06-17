@@ -14,8 +14,8 @@ public class UErrorHandler : ErrorHandler
             init = true;
         }
 
-        if (init)
-         errorUI.displayMessage("ERROR: " + msg);
+        //if (init)
+         //errorUI.displayMessage("ERROR: " + msg);
 
     }
 

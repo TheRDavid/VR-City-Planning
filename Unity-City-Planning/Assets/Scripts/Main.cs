@@ -32,8 +32,7 @@ public class Main : MonoBehaviour
 
             List<Road> roads = new List<Road>(
                 new Road[]{
-                new Road(new Vector2Int(3,1), new Vector2Int(3,7)),
-                new Road(new Vector2Int(1,1), new Vector2Int(1,6))
+                new Road(new Vector2Int(3,1), new Vector2Int(3,7))
             });
 
             StreamWriter writer = new StreamWriter(dataPath, false);
