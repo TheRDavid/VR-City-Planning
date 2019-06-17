@@ -176,7 +176,7 @@ public class UnityDataWatcher : MonoBehaviour, IDataWatcher
         }
     }
 
-    private void applyVisualization(Visualizer visualizer, GameObject gameObject)
+    public void applyVisualization(Visualizer visualizer, GameObject gameObject)
     {
         switch (visualizer.visualizationName)
         {

@@ -60,12 +60,23 @@ public class EditBuilding : MonoBehaviour
 
     public void Hide()
     {
+        foreach (Renderer r in GameObject.Find("SelectionCube").GetComponentsInChildren<Renderer>())
+        {
+            r.material.color = new Color(0.886f, 0.75f, 0.414f, 0.75f);
+        }
+
+        if (GazeSelect.instance.selectedGameObject != null) Destroy(GazeSelect.instance.selectedGameObject.GetComponent<USizePulser>());
         gameObject.SetActive(false);
         MenuSelect.instance.Show();
     }
 
     public void Show(Building entity)
     {
+        foreach (Renderer r in GameObject.Find("SelectionCube").GetComponentsInChildren<Renderer>())
+        {
+            r.material.color = new Color(0, 0, 0, 0);
+        }
+
         editable = entity;
         MenuSelect.instance.Hide();
         gameObject.SetActive(true);
@@ -76,6 +87,12 @@ public class EditBuilding : MonoBehaviour
         consumptionSlider.value = entity.Consumption;
         positionText.text = "Position: " + entity.location.x + " x " + entity.location.y;
         catergoryDropDown.value = cats.IndexOf(entity.Category);
+
+
+
+        USizePulser usp = GazeSelect.instance.selectedGameObject.AddComponent<USizePulser>();
+        usp.setScalingAttributes(new Visualizer.SizePulser(1, 1.5f, 1, 1).floatParams);
+
     }
 
 

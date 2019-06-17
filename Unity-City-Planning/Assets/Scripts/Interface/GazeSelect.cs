@@ -11,6 +11,7 @@ public class GazeSelect : MonoBehaviour
     private Vector3 bannedPosition = new Vector3(0, -10, 0);
     private GameObject selectionCube;
     public static GazeSelect instance;
+    public GameObject selectedGameObject = null;
 
     private void Start()
     {
@@ -66,6 +67,7 @@ public class GazeSelect : MonoBehaviour
 
                     if (selection == null) return;
 
+
                     if (typeof(Building).Equals(selection.GetType()))
                     {
                         quadX = (int)seen.transform.position.x;
@@ -81,6 +83,8 @@ public class GazeSelect : MonoBehaviour
 
                     if (Input.GetKeyUp(KeyCode.Space))
                     {
+                        selectedGameObject = seen.transform.parent.gameObject;
+
                         if (typeof(Building).Equals(selection.GetType()))
                         {
                             Building b = selection as Building;

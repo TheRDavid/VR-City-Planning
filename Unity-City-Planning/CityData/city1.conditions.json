@@ -31,22 +31,6 @@
                 "visualizationName": "ColorHighlighter"
             },
             "conditionValue": "10"
-        },
-        {
-            "conditionName": "Population",
-            "conditionType": "equals",
-            "visualizer": {
-                "floatParams": [
-                    1.0,
-                    1.5,
-                    1.0,
-                    1.0
-                ],
-                "stringParams": [],
-                "intParams": [],
-                "visualizationName": "SizePulser"
-            },
-            "conditionValue": "0"
         }
     ]
 }
