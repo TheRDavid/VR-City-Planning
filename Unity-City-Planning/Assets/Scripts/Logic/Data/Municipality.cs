@@ -24,6 +24,11 @@ public class Municipality
     public double commercialAccess;
     public double natureAccess;
 
+    public double smartCityIndex;
+    public string smartCityIndexLabel;
+
+    private const int max_CO2Emissions = 20;
+
     // We will need to change from an int as street space to actual streets (two coordinates that are connected)
     public int StreetSpace
     {
@@ -52,6 +57,8 @@ public class Municipality
         }
     }
 
+ 
+
     public Municipality(List<Building> buildings, List<Road> roads, Vector2Int size, double energyProd, int CO2)
     {
         instance = this;
@@ -65,6 +72,7 @@ public class Municipality
         updateBuildingSpace();
 
         calculatePopulationConsumption();
+        calculateSmartCityIndex();
     }
 
     public void updateSpaces(){
@@ -190,6 +198,40 @@ public class Municipality
         // so instead, we calculate the proportion of greenspace per population
 
         natureAccess = greenSpace / totalPopulation;
+    }
+
+    public void calculateSmartCityIndex(){
+        calculatePopulationConsumption();
+        calculateNatureAccess();
+        calculateCommercialAccess();
+
+        double index = renewableEnergyProduction / totalConsumption;
+        index += 1 - (CO2Emissions / max_CO2Emissions);
+        index += natureAccess + commercialAccess;
+
+        smartCityIndex = index / 4;
+
+        if(smartCityIndex >= 0.9){
+            smartCityIndexLabel = "excellent";
+        }
+        else if (smartCityIndex >= 0.7){
+            smartCityIndexLabel = "good";
+        }
+        else if (smartCityIndex >= 0.5)
+        {
+            smartCityIndexLabel = "adequate";
+        }
+        else if (smartCityIndex >= 0.3)
+        {
+            smartCityIndexLabel = "poor";
+        }
+        else if (smartCityIndex >= 0.1)
+        {
+            smartCityIndexLabel = "abysmal";
+        }
+        else {
+            smartCityIndexLabel = "nonexistent";
+        }
     }
     public static void InsertRoad(Road newRoad)
     {
