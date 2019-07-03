@@ -57,7 +57,7 @@ public class Building : MapEntity
 
     public void updateScore()
     {
-        buildingScore = this.Population + this.Consumption + (int) this.Size.magnitude;
+        buildingScore = this.Population + this.Consumption + (int)this.Size.magnitude;
     }
 
     public double distance(Building other){
