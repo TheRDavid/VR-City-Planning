@@ -15,7 +15,7 @@ public class Building : MapEntity
     public string Category;
     public static readonly List<string> BuildingCategories = new List<string>(
         new string[] { "Default", "Business", "Industrial" });
-
+    
     public int Consumption {
         get { return consumption; }
         set { consumption = value; updateScore(); }
@@ -60,25 +60,25 @@ public class Building : MapEntity
         buildingScore = this.Population + this.Consumption + (int) this.Size.magnitude;
     }
 
-    public bool collisionWithBuildings(List<Building> buildings){
-        var coordinates = buildings.Select((building, index) => building.location);
-        return coordinates.Contains(this.location);
+    public double distance(Building other){
+        return Vector2Int.Distance(this.location, other.location);
     }
 
-    public bool collisionWithBuildings(List<Vector2Int> buildings){
-        return buildings.Contains(this.location);
-    }
-
-    public bool collisionWithRoads(List<Road> roads){
-        foreach (Road r in roads)
+    internal bool collisionWithBuildings(List<Building> buildings)
+    {
+        foreach(Building b in buildings)
         {
-            if (collide(this, r))
-            {
-                ErrorHandler.instance.reportError("Building is overlapping with a road", this);
-                return true;
-            }
+            if (location.Equals(b.Location)) return true;
         }
+        return false;
+    }
 
+    internal bool collisionWithRoads(List<Road> roads)
+    {
+        foreach(Road r in roads)
+        {
+            if (collide(this, r)) return true;
+        }
         return false;
     }
 }

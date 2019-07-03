@@ -5,32 +5,46 @@
             "conditionType": "largerequals",
             "visualizer": {
                 "floatParams": [
-                    1.0,
-                    0.20000000298023225,
-                    0.0,
-                    1.0
+                    0.6,
+                    1,
+                    0.7,
+                    1
                 ],
                 "stringParams": [],
                 "intParams": [],
                 "visualizationName": "ColorHighlighter"
             },
-            "conditionValue": "10"
-        },
-        {
+            "conditionValue": "40"
+        },{
             "conditionName": "Population",
-            "conditionType": "equals",
+            "conditionType": "largerequals",
             "visualizer": {
                 "floatParams": [
-                    1.0,
-                    1.5,
-                    1.0,
-                    1.0
+                    0,
+                    0.7,
+                    0.9,
+                    1
                 ],
                 "stringParams": [],
                 "intParams": [],
-                "visualizationName": "SizePulser"
+                "visualizationName": "ColorHighlighter"
             },
-            "conditionValue": "0"
+            "conditionValue": "40"
+        },{
+            "conditionName": "Consumption",
+            "conditionType": "smallerequals",
+            "visualizer": {
+                "floatParams": [
+                    0.6,
+                    1,
+                    0.7,
+                    1
+                ],
+                "stringParams": [],
+                "intParams": [],
+                "visualizationName": "ColorHighlighter"
+            },
+            "conditionValue": "1"
         }
     ]
 }

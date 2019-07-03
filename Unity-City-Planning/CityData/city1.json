@@ -1,15 +1,12 @@
 {
-    "streetSpace": 0,
-    "buildingSpace": 3,
-    "greenSpace": -3,
     "size": {
-        "x": 0,
-        "y": 0
+        "x": 10,
+        "y": 10
     },
     "buildings": [
         {
-            "ID": "44865030-61c3-41ac-9273-9f8eaf6fe31f",
-            "population": 3,
+            "ID": "129eb028-b91b-46c1-b45c-448e73e12208",
+            "population": 50,
             "consumption": 15,
             "size": {
                 "x": 1,
@@ -18,28 +15,88 @@
             },
             "location": {
                 "x": 2,
-                "y": 3
+                "y": 4
             },
             "Category": "Business"
         },
         {
-            "ID": "10dd8b72-ebcd-4e1b-8fea-c1af672932c6",
-            "population": 3,
-            "consumption": 3,
+            "ID": "5f2073fb-efdf-4554-a2fb-6a9ed465d21d",
+            "population": 0,
+            "consumption": 2,
             "size": {
                 "x": 1,
                 "y": 1,
                 "z": 1
             },
             "location": {
-                "x": -2,
-                "y": -2
+                "x": 2,
+                "y": 5
+            },
+            "Category": "Business"
+        },
+        {
+            "ID": "5bf559d5-07cb-4469-8413-192685ba2641",
+            "population": 4,
+            "consumption": 2,
+            "size": {
+                "x": 1,
+                "y": 1,
+                "z": 1
+            },
+            "location": {
+                "x": 2,
+                "y": 6
+            },
+            "Category": "Default"
+        },
+        {
+            "ID": "6f24fd8e-b242-4e8e-8b6a-d39efc96396d",
+            "population": 3,
+            "consumption": 20,
+            "size": {
+                "x": 1,
+                "y": 1,
+                "z": 1
+            },
+            "location": {
+                "x": 4,
+                "y": 4
+            },
+            "Category": "Default"
+        },
+        {
+            "ID": "0c87487f-dcd9-4b10-8208-43c2511b9fb9",
+            "population": 0,
+            "consumption": 7,
+            "size": {
+                "x": 1,
+                "y": 1,
+                "z": 1
+            },
+            "location": {
+                "x": 4,
+                "y": 5
             },
             "Category": "Industrial"
         },
         {
-            "ID": "6a7d328a-5ef7-4a5f-a04f-08c614a3e3f9",
-            "population": 10,
+            "ID": "bcdbe458-d992-4c50-a8b3-fb0c67be8242",
+            "population": 14,
+            "consumption": 2,
+            "size": {
+                "x": 1,
+                "y": 1,
+                "z": 1
+            },
+            "location": {
+                "x": 4,
+                "y": 6
+            },
+            "Category": "Default"
+        },
+        {
+            "ID": "6d766683-db02-4419-8bc2-9630cd98f180",
+            "population": 25,
             "consumption": 10,
             "size": {
                 "x": 1,
@@ -47,15 +104,120 @@
                 "z": 1
             },
             "location": {
-                "x": 10,
-                "y": 10
+                "x": 1,
+                "y": 0
             },
             "Category": "Default"
         },
         {
-            "ID": "291d2f5d-4d61-41c8-8b0d-dfe0e53e89c7",
-            "population": 6,
-            "consumption": 6,
+            "ID": "a89bc229-5811-4fb0-b768-bf1c270ace3b",
+            "population": 25,
+            "consumption": 10,
+            "size": {
+                "x": 1,
+                "y": 1,
+                "z": 1
+            },
+            "location": {
+                "x": 1,
+                "y": 1
+            },
+            "Category": "Default"
+        },
+        {
+            "ID": "cd9611c1-a865-454f-b023-63092bfbc8cf",
+            "population": 25,
+            "consumption": 10,
+            "size": {
+                "x": 1,
+                "y": 1,
+                "z": 1
+            },
+            "location": {
+                "x": 1,
+                "y": 2
+            },
+            "Category": "Default"
+        },
+        {
+            "ID": "ad44ee7e-eebd-4b7a-8e69-f92761781c50",
+            "population": 0,
+            "consumption": 30,
+            "size": {
+                "x": 1,
+                "y": 1,
+                "z": 1
+            },
+            "location": {
+                "x": 5,
+                "y": 2
+            },
+            "Category": "Business"
+        },
+        {
+            "ID": "e976c375-7a51-4374-b51a-32aabb15b370",
+            "population": 20,
+            "consumption": 30,
+            "size": {
+                "x": 1,
+                "y": 1,
+                "z": 1
+            },
+            "location": {
+                "x": 7,
+                "y": 1
+            },
+            "Category": "Business"
+        },
+        {
+            "ID": "c24ab764-e10e-4aca-b94f-b0c74ee358cb",
+            "population": 0,
+            "consumption": 30,
+            "size": {
+                "x": 1,
+                "y": 1,
+                "z": 1
+            },
+            "location": {
+                "x": 7,
+                "y": 0
+            },
+            "Category": "Business"
+        },
+        {
+            "ID": "542e7cee-2eb4-49e2-ba32-bd532a972505",
+            "population": 0,
+            "consumption": 150,
+            "size": {
+                "x": 1,
+                "y": 1,
+                "z": 1
+            },
+            "location": {
+                "x": 4,
+                "y": 0
+            },
+            "Category": "Industrial"
+        },
+        {
+            "ID": "5240a3e2-f8e6-4691-88fe-61f3ae7a2472",
+            "population": 0,
+            "consumption": 150,
+            "size": {
+                "x": 1,
+                "y": 1,
+                "z": 1
+            },
+            "location": {
+                "x": 4,
+                "y": 1
+            },
+            "Category": "Industrial"
+        },
+        {
+            "ID": "18a90c76-b65f-485f-9e44-50b9e607d874",
+            "population": 0,
+            "consumption": 30,
             "size": {
                 "x": 1,
                 "y": 1,
@@ -63,96 +225,201 @@
             },
             "location": {
                 "x": 6,
+                "y": 4
+            },
+            "Category": "Business"
+        },
+        {
+            "ID": "eeb3b282-8938-4437-874b-b89df66360a8",
+            "population": 0,
+            "consumption": 30,
+            "size": {
+                "x": 1,
+                "y": 1,
+                "z": 1
+            },
+            "location": {
+                "x": 5,
+                "y": 4
+            },
+            "Category": "Business"
+        },
+        {
+            "ID": "12676890-5407-4884-bafc-00ef66cab873",
+            "population": 0,
+            "consumption": 150,
+            "size": {
+                "x": 1,
+                "y": 1,
+                "z": 1
+            },
+            "location": {
+                "x": 9,
+                "y": 9
+            },
+            "Category": "Industrial"
+        },
+        {
+            "ID": "31989728-d263-4e08-ab5e-32859d6665ce",
+            "population": 0,
+            "consumption": 150,
+            "size": {
+                "x": 1,
+                "y": 1,
+                "z": 1
+            },
+            "location": {
+                "x": 10,
+                "y": 8
+            },
+            "Category": "Industrial"
+        },
+        {
+            "ID": "a6ddcd5f-541a-4bed-abe1-36a13c0652fe",
+            "population": 0,
+            "consumption": 25,
+            "size": {
+                "x": 1,
+                "y": 1,
+                "z": 1
+            },
+            "location": {
+                "x": 9,
+                "y": 7
+            },
+            "Category": "Industrial"
+        },
+        {
+            "ID": "19e08d40-43b5-4e36-b398-79f9d661ce4c",
+            "population": 0,
+            "consumption": 20,
+            "size": {
+                "x": 1,
+                "y": 1,
+                "z": 1
+            },
+            "location": {
+                "x": 9,
                 "y": 6
             },
-            "Category": "Default"
+            "Category": "Industrial"
         },
         {
-            "ID": "2bae1b9a-0829-4858-9c9d-c8347d456daa",
-            "population": 20,
-            "consumption": 0,
+            "ID": "90326104-4d55-4441-acdf-92df2b2b884d",
+            "population": 25,
+            "consumption": 50,
             "size": {
                 "x": 1,
                 "y": 1,
                 "z": 1
             },
             "location": {
-                "x": 2,
-                "y": 2
+                "x": 4,
+                "y": 7
             },
             "Category": "Default"
         },
         {
-            "ID": "a3f42d12-bc66-49af-8d69-126bd62cb233",
-            "population": 22,
-            "consumption": 22,
+            "ID": "4f8d833c-648a-4867-b81f-1089ef1a120d",
+            "population": 25,
+            "consumption": 10,
             "size": {
                 "x": 1,
                 "y": 1,
                 "z": 1
             },
             "location": {
-                "x": 12,
-                "y": 12
+                "x": 5,
+                "y": 7
+            },
+            "Category": "Default"
+        },
+        {
+            "ID": "27d14f9c-6fea-4439-9205-61343fdad1b6",
+            "population": 25,
+            "consumption": 10,
+            "size": {
+                "x": 1,
+                "y": 1,
+                "z": 1
+            },
+            "location": {
+                "x": 6,
+                "y": 7
+            },
+            "Category": "Default"
+        },
+        {
+            "ID": "891d351e-a7f6-4846-b912-cd3e9426b616",
+            "population": 25,
+            "consumption": 10,
+            "size": {
+                "x": 1,
+                "y": 1,
+                "z": 1
+            },
+            "location": {
+                "x": 7,
+                "y": 7
             },
             "Category": "Default"
         }
     ],
     "roads": [
         {
-            "ID": "47178d89-4c3e-40b8-a2b6-2fb1e48bfa96",
+            "ID": "f3e6a3fc-bd9f-4cd9-9d22-2b07dcaba4ff",
             "start": {
-                "x": 2,
-                "y": 1
-            },
-            "end": {
-                "x": 0,
-                "y": 1
-            }
-        },
-        {
-            "ID": "373f6e6e-9547-4188-b90e-e3faf811e0a7",
-            "start": {
-                "x": 7,
-                "y": 4
-            },
-            "end": {
-                "x": 0,
-                "y": 4
-            }
-        },
-        {
-            "ID": "2f277893-c48e-48aa-90dc-4fa107f51e0c",
-            "start": {
-                "x": 10,
+                "x": 3,
                 "y": 0
             },
             "end": {
-                "x": -10,
-                "y": 0
-            }
-        },
-        {
-            "ID": "3e6e9934-6a29-4138-bb93-e58408bc013f",
-            "start": {
-                "x": 10,
-                "y": 0
+                "x": 3,
+                "y": 10
             },
-            "end": {
-                "x": 8,
-                "y": 0
-            }
+            "length": 10
         },
         {
-            "ID": "622b5379-f97e-4b51-ad6c-b03d74e7eefb",
+            "ID": "f3e6a3fc-bd9f-4cd9-9d22-2b07dc3ba4ff",
             "start": {
                 "x": 0,
-                "y": -10
+                "y": 0
             },
             "end": {
                 "x": 0,
                 "y": 10
-            }
+            },
+            "length": 10
+        },
+        {
+            "ID": "f3e6a3fc-bd9f-4cd9-9d22-2b071caba4ff",
+            "start": {
+                "x": 8,
+                "y": 0
+            },
+            "end": {
+                "x": 8,
+                "y": 10
+            },
+            "length": 10
+        },
+        {
+            "ID": "f3e6a3fx-bd9f-4cd9-9d22-2b071caba4ff",
+            "start": {
+                "x": 0,
+                "y": 3
+            },
+            "end": {
+                "x": 10,
+                "y": 3
+            },
+            "length": 10
         }
-    ]
+    ],
+    "totalPopulation": 24,
+    "totalConsumption": 2,
+    "populationDensity": 0.0,
+    "renewableEnergyProduction": 0.5,
+    "CO2Emissions": 200,
+    "commercialAccess": 0.0,
+    "natureAccess": 0.0
 }

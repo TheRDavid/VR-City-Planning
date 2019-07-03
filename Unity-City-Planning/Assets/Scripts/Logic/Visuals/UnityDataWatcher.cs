@@ -15,11 +15,14 @@ public class UnityDataWatcher : MonoBehaviour, IDataWatcher
     public GameObject businessBuildingPrefab;
     public GameObject industrialBuildingPrefab;
     public GameObject roadPrefab;
+    public GameObject grassPrefab;
 
     public void reactToChange(Municipality municipality, ConditionList conditionList)
     {
         this.conditionList = conditionList;
         this.municipality = municipality;
+        this.municipality.updateSpaces();
+        Municipality.instance = municipality;
         refreshNeeded = true;
     }
 
@@ -30,6 +33,17 @@ public class UnityDataWatcher : MonoBehaviour, IDataWatcher
         businessBuildingPrefab = Resources.Load("Prefabs/BusinessFlat") as GameObject;
         industrialBuildingPrefab = Resources.Load("Prefabs/Industrial") as GameObject;
         roadPrefab = Resources.Load("Prefabs/Road") as GameObject;
+        grassPrefab = Resources.Load("Prefabs/Grass") as GameObject;
+    }
+
+    void assignID(GameObject o, String ID)
+    {
+        o.name = ID;
+        o.transform.name = ID;
+        foreach(Transform child in o.transform)
+        {
+            assignID(child.gameObject, ID);
+        }
     }
 
     // Update is called once per frame
@@ -42,7 +56,11 @@ public class UnityDataWatcher : MonoBehaviour, IDataWatcher
                 Destroy(gameObject);
             }
             dataObjects.Clear();
-            var drawnBuildings = new List<Vector2Int>();
+
+            GameObject greenspace = Instantiate(grassPrefab, new Vector3(municipality.size.x / 2, (float)-0.0001, municipality.size.y / 2), Quaternion.identity);
+            greenspace.transform.localScale += new Vector3(municipality.size.x, 0, municipality.size.y);
+            assignID(greenspace, "ground");
+            var drawnBuildings = new List<Building>();
             foreach (Building b in municipality.buildings)
             {
                 // another building with the same coordinates exists
@@ -80,15 +98,15 @@ public class UnityDataWatcher : MonoBehaviour, IDataWatcher
                         applyVisualization(c.visualizer, go);
                     }
                 }
-
+                
                 dataObjects.Add(go);
-                drawnBuildings.Add(b.Location);
+                assignID(go, b.ID);
+                drawnBuildings.Add(b);
 
 
             }
             foreach (Road r in municipality.roads)
             {
-                r.calculateLength();
                 Quaternion roadRotation = Quaternion.Euler(0, 0, 0);
                 Vector3Int startLocation = locationToUnityLocation(r.Start);
                 Vector3 midpointLocation = new Vector3(0,0,0);
@@ -150,6 +168,7 @@ public class UnityDataWatcher : MonoBehaviour, IDataWatcher
                 }
 
                 // add the new road to dataObjects
+                assignID(road, r.ID);
                 dataObjects.Add(road);
             }
 
@@ -157,7 +176,7 @@ public class UnityDataWatcher : MonoBehaviour, IDataWatcher
         }
     }
 
-    private void applyVisualization(Visualizer visualizer, GameObject gameObject)
+    public void applyVisualization(Visualizer visualizer, GameObject gameObject)
     {
         switch (visualizer.visualizationName)
         {
